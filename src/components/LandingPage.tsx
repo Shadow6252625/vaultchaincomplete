@@ -8,6 +8,33 @@ import { Icon } from '@iconify/react';
 
 
 
+const ForcedVideo = ({ src, className, preload = "auto" }: { src: string, className?: string, preload?: "auto" | "metadata" | "none" }) => {
+  const ref = React.useRef<HTMLVideoElement>(null);
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.play().catch(() => {
+        // Fallback for strict browsers: try again on interaction
+        const play = () => ref.current?.play();
+        window.addEventListener('click', play, { once: true });
+        window.addEventListener('scroll', play, { once: true });
+      });
+    }
+  }, [src]);
+  return (
+    <video
+      ref={ref}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload={preload}
+      className={className}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+};
+
 export default function LandingPage() {
   React.useEffect(() => {
     // Force transparency for fixed background to show through
@@ -155,16 +182,10 @@ export default function LandingPage() {
         {/* 1. Hero Section */}
         <section className="px-6 overflow-hidden pt-4 pb-4 relative vc-hardware-accel">
           <div className="relative max-w-6xl mx-auto min-h-[600px] sm:min-h-[700px] flex flex-col bg-neutral-950 rounded-[40px] p-10 sm:p-20 overflow-hidden shadow-2xl border border-white/5">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="absolute inset-0 w-full h-full object-cover bg-black scale-95"
-            >
-              <source src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4" type="video/mp4" />
-            </video>
+            <ForcedVideo
+              src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4"
+              className="absolute inset-0 w-full h-full object-cover bg-black"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-neutral-950/80"></div>
             <div className="absolute inset-0 bg-black/30"></div>
 
@@ -354,16 +375,10 @@ export default function LandingPage() {
         >
           <div className="max-w-6xl mx-auto bg-white rounded-[40px] p-2 relative overflow-hidden group shadow-3xl">
             <div className="h-[500px] sm:h-[600px] w-full relative rounded-[38px] overflow-hidden flex items-center justify-center bg-black">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
+              <ForcedVideo
+                src="/asset/kling_20260224_Image_to_Video_Animate_a__5181_0.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source src="/asset/kling_20260224_Image_to_Video_Animate_a__5181_0.mp4" type="video/mp4" />
-              </video>
+              />
               <div className="absolute inset-0 bg-black/40"></div>
               <h2 className="relative z-10 text-[12vw] sm:text-[10vw] font-black text-white tracking-tighter leading-none select-none mix-blend-difference font-geist text-center">FROM DATA<br />TO FORTRESS</h2>
             </div>
@@ -498,16 +513,10 @@ export default function LandingPage() {
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[40px] p-4 sm:p-10 border border-white/10 backdrop-blur-md grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 bg-black group shadow-2xl">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
+              <ForcedVideo
+                src="/asset/kling_20260224_Image_to_Video_Animate_a__5819_0.mp4"
                 className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
-              >
-                <source src="/asset/kling_20260224_Image_to_Video_Animate_a__5819_0.mp4" type="video/mp4" />
-              </video>
+              />
             </div>
             <div className="space-y-10">
               <h2 className="text-5xl md:text-6xl font-light text-white font-geist tracking-tighter leading-tight">Compliant across <span className="text-neutral-500">borders.</span></h2>

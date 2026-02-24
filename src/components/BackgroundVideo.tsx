@@ -6,7 +6,6 @@ const { useEffect, useRef, useState } = React;
 
 export function BackgroundVideo({ src = "/vault-bg.mp4", brightness = 0.35 }: { src?: string, brightness?: number }) {
   const pathname = usePathname();
-  if (pathname === "/") return null;
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +28,6 @@ export function BackgroundVideo({ src = "/vault-bg.mp4", brightness = 0.35 }: { 
       : "/vault-poster.png"; // Fallback poster
 
 
-  if (pathname === "/") return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#0b0c10]">
