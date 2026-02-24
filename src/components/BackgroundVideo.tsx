@@ -6,6 +6,8 @@ const { useEffect, useRef, useState } = React;
 
 export function BackgroundVideo({ src = "/vault-bg.mp4", brightness = 0.35 }: { src?: string, brightness?: number }) {
   const pathname = usePathname();
+  if (pathname === "/") return null;
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 

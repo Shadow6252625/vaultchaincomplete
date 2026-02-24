@@ -4,26 +4,9 @@ import * as React from 'react';
 const { useEffect } = React;
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import { motion } from 'framer-motion';
 
 
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-};
-
-const staggerContainer = {
-  initial: {},
-  whileInView: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  },
-  viewport: { once: true, margin: "-100px" }
-};
 
 export default function LandingPage() {
   React.useEffect(() => {
@@ -31,21 +14,20 @@ export default function LandingPage() {
     document.body.style.background = 'transparent';
     document.documentElement.style.background = 'transparent';
 
-    // Initialize Unicorn Studio
-    if (!window.UnicornStudio) {
-      window.UnicornStudio = { isInitialized: false };
-      const script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js";
-      script.onload = () => {
-        if (window.UnicornStudio && typeof window.UnicornStudio.init === "function" && !window.UnicornStudio.isInitialized) {
+    // Initialize Unicorn Studio if script is already present (from layout.tsx)
+    const initUnicorn = () => {
+      if (window.UnicornStudio && typeof window.UnicornStudio.init === "function") {
+        if (!window.UnicornStudio.isInitialized) {
           window.UnicornStudio.init();
           window.UnicornStudio.isInitialized = true;
         }
-      };
-      document.head.appendChild(script);
-    } else if (window.UnicornStudio && typeof window.UnicornStudio.init === "function") {
-      window.UnicornStudio.init();
-    }
+      } else {
+        // Retry if script hasn't loaded yet
+        setTimeout(initUnicorn, 500);
+      }
+    };
+
+    initUnicorn();
 
     // Billing Toggle logic
     const setupBillingToggle = () => {
@@ -111,11 +93,6 @@ export default function LandingPage() {
     };
 
     setupBillingToggle();
-
-    // Initialize scripts (Iconify etc)
-    const iconify = document.createElement("script");
-    iconify.src = "https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js";
-    document.head.appendChild(iconify);
   }, []);
 
   return (
@@ -133,6 +110,14 @@ export default function LandingPage() {
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        main > section {
+          content-visibility: auto;
+          contain-intrinsic-size: 1px 1000px;
+        }
+        .vc-hardware-accel {
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
       `}</style>
 
@@ -168,12 +153,16 @@ export default function LandingPage() {
       <main className="space-y-4 py-4">
 
         {/* 1. Hero Section */}
-        <motion.section
-          className="px-6 overflow-hidden pt-4 pb-4 relative"
-          {...fadeInUp}
-        >
+        <section className="px-6 overflow-hidden pt-4 pb-4 relative vc-hardware-accel">
           <div className="relative max-w-6xl mx-auto min-h-[600px] sm:min-h-[700px] flex flex-col bg-neutral-950 rounded-[40px] p-10 sm:p-20 overflow-hidden shadow-2xl border border-white/5">
-            <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-contain bg-black">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover bg-black scale-95"
+            >
               <source src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-neutral-950/80"></div>
@@ -204,13 +193,12 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 2. Capabilities Section (Engineered for absolute data sovereignty) - RESTORED TO MATCH SCREENSHOT */}
-        <motion.section
+        <section
           id="capabilities"
-          className="px-6 py-1"
-          {...fadeInUp}
+          className="px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950 rounded-[40px] p-4 sm:p-6 border border-white/5 space-y-8">
             <div className="text-center mb-6">
@@ -302,13 +290,12 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 3. Node Licensing Section */}
-        <motion.section
+        <section
           id="aura-emf5jfuh5"
-          className="px-6 py-1"
-          {...fadeInUp}
+          className="px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950 rounded-[40px] p-4 sm:p-10 border border-white/5">
             <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-8">
@@ -358,27 +345,34 @@ export default function LandingPage() {
             </div>
             <p className="text-[9px] text-neutral-500 font-geist mt-8 flex gap-2 items-center tracking-widest uppercase font-bold"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></svg> No hidden fees. Transparent process from day one.</p>
           </div>
-        </motion.section>
+        </section>
 
         {/* 4. Results Section (Big Video) */}
-        <motion.section
+        <section
           id="results"
-          className="px-6 py-2"
-          {...fadeInUp}
+          className="px-6 py-2 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-white rounded-[40px] p-2 relative overflow-hidden group shadow-3xl">
             <div className="h-[500px] sm:h-[600px] w-full relative rounded-[38px] overflow-hidden flex items-center justify-center bg-black">
-              <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-contain"><source src="/asset/kling_20260224_Image_to_Video_Animate_a__5181_0.mp4" type="video/mp4" /></video>
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src="/asset/kling_20260224_Image_to_Video_Animate_a__5181_0.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-black/40"></div>
               <h2 className="relative z-10 text-[12vw] sm:text-[10vw] font-black text-white tracking-tighter leading-none select-none mix-blend-difference font-geist text-center">FROM DATA<br />TO FORTRESS</h2>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 5. Journey Section (Isometric Stack) */}
-        <motion.section
-          className="px-6 py-4"
-          {...fadeInUp}
+        <section
+          className="px-6 py-4 vc-hardware-accel"
         >
           <div id="journey" className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
 
@@ -474,12 +468,11 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 6. Architecture Section */}
-        <motion.section
-          className="px-6 py-1"
-          {...fadeInUp}
+        <section
+          className="px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[40px] p-4 sm:p-10 border border-white/10 backdrop-blur-md">
             <h2 className="text-5xl md:text-7xl font-light text-white font-geist tracking-tighter mb-8">Built for resilience.</h2>
@@ -497,16 +490,24 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 7. Global Compliance Section */}
-        <motion.section
-          className="px-6 py-1"
-          {...fadeInUp}
+        <section
+          className="px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[40px] p-4 sm:p-10 border border-white/10 backdrop-blur-md grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 bg-black group shadow-2xl">
-              <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><source src="/asset/kling_20260224_Image_to_Video_Animate_a__5819_0.mp4" type="video/mp4" /></video>
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+              >
+                <source src="/asset/kling_20260224_Image_to_Video_Animate_a__5819_0.mp4" type="video/mp4" />
+              </video>
             </div>
             <div className="space-y-10">
               <h2 className="text-5xl md:text-6xl font-light text-white font-geist tracking-tighter leading-tight">Compliant across <span className="text-neutral-500">borders.</span></h2>
@@ -520,12 +521,11 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 8. Metrics Section */}
-        <motion.section
-          className="px-6 py-1"
-          {...fadeInUp}
+        <section
+          className="px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[50px] p-6 sm:p-10 border border-white/10 backdrop-blur-xl flex flex-col md:flex-row justify-between items-center gap-16">
             <div className="space-y-6 text-center md:text-left">
@@ -538,12 +538,11 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 9. Final CTA Section */}
-        <motion.section
-          className="px-6 py-2 pb-8"
-          {...fadeInUp}
+        <section
+          className="px-6 py-2 pb-8 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/80 rounded-[60px] p-8 sm:p-16 text-center relative overflow-hidden group border border-white/10 shadow-3xl">
             <div className="absolute inset-0 bg-blue-600/10 blur-[160px] rounded-full group-hover:bg-blue-600/20 transition-all duration-1000"></div>
@@ -556,7 +555,7 @@ export default function LandingPage() {
               Launch Terminal <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="group-hover:translate-x-2 transition-transform"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
           </div>
-        </motion.section>
+        </section>
 
       </main>
 

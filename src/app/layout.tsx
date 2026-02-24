@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description: "VaultChain — The Encrypted Core of Trust.",
 };
 
+import Script from "next/script";
 import { SolanaProvider } from "@/components/SolanaProvider";
 
 export default function RootLayout({
@@ -40,6 +41,16 @@ export default function RootLayout({
             {children}
           </div>
         </SolanaProvider>
+
+        {/* Optimized Script Loading */}
+        <Script
+          src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js"
+          strategy="lazyOnload"
+        />
+        <Script
+          src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
