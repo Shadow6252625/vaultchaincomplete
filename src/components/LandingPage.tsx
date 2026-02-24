@@ -163,6 +163,9 @@ export default function LandingPage() {
               <a href="#journey" className="text-sm font-geist text-neutral-400 hover:text-white transition-colors">Mission</a>
               <a href="#capabilities" className="text-sm font-geist text-neutral-400 hover:text-white transition-colors">Ecosystem</a>
               <a href="#results" className="text-sm font-geist text-neutral-400 hover:text-white transition-colors">Protocol</a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors flex items-center">
+                <Icon icon="ri:twitter-x-fill" width="18" />
+              </a>
             </div>
             <Link
               href="/launch"
