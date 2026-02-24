@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import type { DashboardResponse } from "@/lib/vaultchain-types";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletModal } from "./WalletModal";
 
 // Dynamically import heavy chart component
 const SecurityGraph = lazy(() => import("@/components/dashboard/SecurityGraph"));
@@ -42,6 +44,8 @@ export function DashboardClient({
   const [status, setStatus] = useState<ActionStatus>({ kind: "idle" });
   const [data, setData] = useState<DashboardResponse>(initial);
   const [activeTab, setActiveTab] = useState(forcedTab || "overview");
+  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
+  const { connected, publicKey } = useWallet();
 
   const vaultId = data.vault.id;
 
@@ -159,7 +163,11 @@ export function DashboardClient({
               type="button"
               disabled={busy}
               className="px-6 py-6 rounded-2xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 transition-shadow"
-              onClick={() =>
+              onClick={() => {
+                if (!connected) {
+                  setIsWalletModalOpen(true);
+                  return;
+                }
                 run("Add Asset", async () => {
                   const res = await fetch("/api/vault/add", {
                     method: "POST",
@@ -171,10 +179,18 @@ export function DashboardClient({
                   });
                   if (!res.ok) throw new Error("Add asset failed");
                   await refresh();
-                })
-              }
+                });
+              }}
             >
-              {busy ? "Sealing..." : "Seal New Asset"}
+              <div className="flex items-center gap-2">
+                {connected && (
+                  <span className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-green-500/10 text-[10px] font-bold text-green-500 border border-green-500/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    CONNECTED
+                  </span>
+                )}
+                <span>{busy ? "Sealing..." : "Seal New Asset"}</span>
+              </div>
             </Button>
             <Button
               type="button"
@@ -448,6 +464,11 @@ export function DashboardClient({
           )}
         </motion.div>
       </main>
+
+      <WalletModal
+        isOpen={isWalletModalOpen}
+        onClose={() => setIsWalletModalOpen(false)}
+      />
     </div>
   );
 }

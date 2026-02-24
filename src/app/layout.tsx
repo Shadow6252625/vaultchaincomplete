@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "VaultChain — The Encrypted Core of Trust.",
 };
 
+import { SolanaProvider } from "@/components/SolanaProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,11 +33,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetBrainsMono.variable} antialiased`}
       >
-        <BackgroundVideo />
-        <div className="relative min-h-dvh">
-          <Header />
-          {children}
-        </div>
+        <SolanaProvider>
+          <BackgroundVideo />
+          <div className="relative min-h-dvh">
+            <Header />
+            {children}
+          </div>
+        </SolanaProvider>
       </body>
     </html>
   );
