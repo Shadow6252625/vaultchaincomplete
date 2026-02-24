@@ -163,7 +163,7 @@ export default function LandingPage() {
               <a href="#journey" className="text-sm font-geist text-neutral-400 hover:text-white transition-colors">Mission</a>
               <a href="#capabilities" className="text-sm font-geist text-neutral-400 hover:text-white transition-colors">Ecosystem</a>
               <a href="#results" className="text-sm font-geist text-neutral-400 hover:text-white transition-colors">Protocol</a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors flex items-center">
+              <a href="https://x.com/Vaultchain_x" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors flex items-center">
                 <Icon icon="ri:twitter-x-fill" width="18" />
               </a>
             </div>
@@ -638,8 +638,8 @@ export default function LandingPage() {
             <div className="space-y-6">
               <h4 className="text-white font-geist font-bold text-sm tracking-wide">Connect</h4>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 hover:text-white text-neutral-400 transition-all">
-                  <Icon icon="logos:twitter" width="16" className="grayscale group-hover:grayscale-0" />
+                <a href="https://x.com/Vaultchain_x" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-neutral-800 hover:text-white text-neutral-400 transition-all">
+                  <Icon icon="ri:twitter-x-fill" width="18" />
                 </a>
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-neutral-800 hover:text-white text-neutral-400 transition-all">
                   <Icon icon="mdi:github" width="20" />
