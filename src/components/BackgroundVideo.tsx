@@ -47,16 +47,14 @@ export function BackgroundVideo({ src = "/vault-bg.mp4", brightness = 0.35 }: { 
         loop
         muted
         playsInline
-        preload="metadata"
-        onCanPlay={() => setIsLoaded(true)}
-        className={`h-full w-full object-cover transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        preload="auto"
+        src={src}
+        className="h-full w-full object-cover"
         style={{
           filter: `brightness(${brightness}) saturate(1.2)`,
-          willChange: "opacity",
+          willChange: "transform",
         }}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      />
       <div
         className="absolute inset-0 z-10"
         style={{

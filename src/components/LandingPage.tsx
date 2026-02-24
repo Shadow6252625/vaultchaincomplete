@@ -22,6 +22,7 @@ const ForcedVideo = ({ src, className, preload = "auto", style = {} }: { src: st
   return (
     <video
       ref={ref}
+      src={src}
       autoPlay
       muted
       loop
@@ -29,9 +30,7 @@ const ForcedVideo = ({ src, className, preload = "auto", style = {} }: { src: st
       preload={preload}
       className={className}
       style={style}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    />
   );
 };
 
