@@ -1,0 +1,1721 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VaultChain — Digital Asset Protection</title>
+  <!-- Favicon - Using official VaultChain logo (inline SVG) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Cdefs%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='2' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M 30 35 L 30 50 Q 30 60 35 65 L 50 75 Q 65 65 70 50 L 70 35 Q 70 25 60 20 L 50 15 Q 40 20 30 25 Z' fill='%230a0a0f' stroke='%2300d4ff' stroke-width='1.5' filter='url(%23glow)'/%3E%3Cpath d='M 35 35 Q 35 25 50 20 Q 65 25 65 35' fill='none' stroke='%2300d4ff' stroke-width='2' stroke-linecap='round' filter='url(%23glow)'/%3E%3Ccircle cx='50' cy='50' r='12' fill='none' stroke='%23ffd700' stroke-width='1.5'/%3E%3Cline x1='50' y1='38' x2='50' y2='42' stroke='%23ffd700' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='50' y1='58' x2='50' y2='62' stroke='%23ffd700' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='38' y1='50' x2='42' y2='50' stroke='%23ffd700' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='58' y1='50' x2='62' y2='50' stroke='%23ffd700' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M 45 50 L 48 53 L 55 46' fill='none' stroke='%23ffd700' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/531cf86b-c775-422c-bec2-7f64f47b9def_320w.png" />
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/531cf86b-c775-422c-bec2-7f64f47b9def_320w.png" />
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/531cf86b-c775-422c-bec2-7f64f47b9def_320w.png" />
+  <link rel="manifest"
+    href="data:application/json,%7B%22name%22%3A%22VaultChain%22%2C%22short_name%22%3A%22VaultChain%22%2C%22description%22%3A%22Digital%20Asset%20Protection%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fhoirqrkdgbmvpwutwuwj.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Fassets%2F531cf86b-c775-422c-bec2-7f64f47b9def_320w.png%22%2C%22sizes%22%3A%2216x16%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fhoirqrkdgbmvpwutwuwj.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Fassets%2F531cf86b-c775-422c-bec2-7f64f47b9def_320w.png%22%2C%22sizes%22%3A%2232x32%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fhoirqrkdgbmvpwutwuwj.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Fassets%2F531cf86b-c775-422c-bec2-7f64f47b9def_320w.png%22%2C%22sizes%22%3A%22180x180%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%2C%22theme_color%22%3A%22%23000000%22%2C%22background_color%22%3A%22%23000000%22%2C%22display%22%3A%22standalone%22%7D" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <style id="aura-editor-visibility-style">
+    .invisible {
+      visibility: hidden !important;
+    }
+  </style>
+
+  <link id="all-fonts-link-font-geist" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-geist">
+    .font-geist {
+      font-family: "Geist", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-roboto" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-roboto">
+    .font-roboto {
+      font-family: "Roboto", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-montserrat" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-montserrat">
+    .font-montserrat {
+      font-family: "Montserrat", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-poppins" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-poppins">
+    .font-poppins {
+      font-family: "Poppins", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-playfair" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&display=swap" />
+  <style id="all-fonts-style-font-playfair">
+    .font-playfair {
+      font-family: "Playfair Display", serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-instrument-serif" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-instrument-serif">
+    .font-instrument-serif {
+      font-family: "Instrument Serif", serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-merriweather" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" />
+  <style id="all-fonts-style-font-merriweather">
+    .font-merriweather {
+      font-family: "Merriweather", serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-bricolage" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-bricolage">
+    .font-bricolage {
+      font-family: "Bricolage Grotesque", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-jakarta" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" />
+  <style id="all-fonts-style-font-jakarta">
+    .font-jakarta {
+      font-family: "Plus Jakarta Sans", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-manrope" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" />
+  <style id="all-fonts-style-font-manrope">
+    .font-manrope {
+      font-family: "Manrope", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-space-grotesk" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-space-grotesk">
+    .font-space-grotesk {
+      font-family: "Space Grotesk", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-work-sans" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap" />
+  <style id="all-fonts-style-font-work-sans">
+    .font-work-sans {
+      font-family: "Work Sans", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-pt-serif" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" />
+  <style id="all-fonts-style-font-pt-serif">
+    .font-pt-serif {
+      font-family: "PT Serif", serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-geist-mono" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-geist-mono">
+    .font-geist-mono {
+      font-family: "Geist Mono", monospace !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-space-mono" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <style id="all-fonts-style-font-space-mono">
+    .font-space-mono {
+      font-family: "Space Mono", monospace !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-quicksand" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-quicksand">
+    .font-quicksand {
+      font-family: "Quicksand", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-nunito" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" />
+  <style id="all-fonts-style-font-nunito">
+    .font-nunito {
+      font-family: "Nunito", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-newsreader" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&display=swap" />
+  <style id="all-fonts-style-font-newsreader">
+    .font-newsreader {
+      font-family: "Newsreader", serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-google-sans-flex" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-google-sans-flex">
+    .font-google-sans-flex {
+      font-family: "Google Sans Flex", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-oswald" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-oswald">
+    .font-oswald {
+      font-family: "Oswald", sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-dm-sans" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" />
+  <style id="all-fonts-style-font-dm-sans">
+    .font-dm-sans {
+      font-family: "DM Sans", sans-serif !important;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen antialiased text-zinc-100 bg-neutral-50" style="
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+        Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+    ">
+  <div id="homeAuraBg" class="aura-background-component fixed top-0 w-full h-screen -z-10">
+    <div data-us-project="x6cbPWi9roeeiZ8cuBu3" class="absolute w-full h-full left-0 top-0 -z-10"></div>
+    <script type="text/javascript">
+      !(function () {
+        if (!window.UnicornStudio) {
+          window.UnicornStudio = { isInitialized: !1 };
+          var i = document.createElement("script");
+          i.src =
+            "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js";
+          i.onload = function () {
+            if (window.UnicornStudio && typeof window.UnicornStudio.init === "function" && !window.UnicornStudio.isInitialized) {
+              window.UnicornStudio.init();
+              window.UnicornStudio.isInitialized = !0;
+            }
+          };
+          (document.head || document.body).appendChild(i);
+        }
+      })();
+    </script>
+  </div>
+
+  <!-- NAV (shared) -->
+  <nav
+    class="sm:px-6 lg:px-8 sm:pr-20 sm:pl-20 bg-neutral-950 max-w-6xl rounded-3xl mt-4 mr-auto ml-auto pt-2 pr-6 pb-2 pl-6 relative"
+    id="topNav">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <button type="button" id="homeBrand" class="flex gap-y-3 items-center gap-x-1 select-none"
+          aria-label="Go to home">
+          <span
+            class="bg-center text-lg font-medium text-neutral-100 tracking-tight font-geist w-[56px] h-[50px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/531cf86b-c775-422c-bec2-7f64f47b9def_320w.png)] bg-cover"></span>
+          <span class="text-lg font-medium tracking-tight font-geist text-neutral-100">
+            VaultChain
+          </span>
+        </button>
+
+        <div class="flex items-center gap-6 sm:gap-6 gap-8">
+          <a href="https://x.com/Vaultchain_x" aria-label="X"
+            class="inline-flex items-center justify-center hover:text-neutral-100 hover:bg-white/10 transition-colors text-neutral-300 bg-white/5 w-9 h-9 ring-white/10 ring-1 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"
+              aria-hidden="true">
+              <path
+                d="M18.9 2H22l-6.78 7.74L23 22h-6.4l-5.02-6.6L5.8 22H2.7l7.28-8.32L1 2h6.56l4.54 6.01L18.9 2Zm-1.12 18h1.72L6.64 3.9H4.8L17.78 20Z">
+              </path>
+            </svg>
+          </a>
+          <a href="#journey" class="text-sm transition-colors font-geist text-neutral-400 hover:text-neutral-100"
+            id="navMission">
+            Mission
+          </a>
+          <a href="#capabilities" class="text-sm transition-colors font-geist text-neutral-400 hover:text-neutral-100"
+            id="navEcosystem">
+            Ecosystem
+          </a>
+          <a href="#results" class="text-sm transition-colors font-geist text-neutral-400 hover:text-neutral-100"
+            id="navProtocol">
+            Protocol
+          </a>
+
+          <button type="button" id="accessVaultBtn"
+            class="group inline-flex text-[12px] transition-all duration-500 hover:scale-105 active:scale-95 hover:brightness-110 overflow-hidden font-light text-white tracking-tight font-geist h-9 rounded-full pr-6 pl-6 relative items-center justify-center">
+            <span
+              class="absolute inset-0 rounded-full pointer-events-none bg-gradient-to-r from-orange-400/20 via-amber-300/30 to-orange-400/20 shadow-[0_0_22px_rgba(248,181,129,0.55)] ring-1 ring-amber-300/60 animate-[pulse_3s_ease-in-out_infinite]"></span>
+            <span
+              class="absolute inset-[3px] rounded-full pointer-events-none bg-gradient-to-b from-orange-400 via-orange-500 to-amber-300 shadow-[0_4px_12px_rgba(0,0,0,0.45)] group-hover:shadow-[0_4px_20px_rgba(251,146,60,0.6)] transition-shadow duration-500"></span>
+            <span
+              class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[70%] h-4 rounded-full blur-xl pointer-events-none bg-amber-300/35 animate-[pulse_4s_ease-in-out_infinite]"></span>
+            <span
+              class="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent z-20 rounded-full pointer-events-none"></span>
+            <span class="font-medium z-10 relative">Access Vault</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <main id="homePage" class="">
+    <!-- Hero Section -->
+    <section class="overflow-hidden sm:py-10 pt-20 pb-10 relative">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 min-h-[520px] sm:min-h-[640px] lg:min-h-[760px] flex flex-col bg-neutral-950 rounded-3xl mr-auto ml-auto pt-10 pr-6 sm:pr-20 pb-10 pl-6 sm:pl-20 overflow-hidden shadow-2xl shadow-black/50"
+        style="container-type: inline-size">
+        <!-- Hero Video Background -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d0a38672-ee19-40e5-8a8f-ddcf0d834caa_1600w.jpg">
+          <source src="asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4" type="video/mp4" />
+        </video>
+        <!-- Cinematic Overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-neutral-950/80 pointer-events-none">
+        </div>
+        <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col h-full">
+
+          <header class="sm:mb-16 mb-12">
+            <span class="block text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[9vw] font-semibold pr-1"
+              style="overflow: hidden; letter-spacing: -0.15em">
+              <span style="
+                  display: inline-block;
+                  animation: 0.8s ease-out 0s 1 normal forwards running
+                    letterSlideIn;
+                  transform: translateY(-100%);
+                  opacity: 0;
+                " class="tracking-tighter font-geist">
+                V
+              </span>
+              <span style="
+                  display: inline-block;
+                  animation: 0.8s ease-out 0.1s 1 normal forwards running
+                    letterSlideIn;
+                  transform: translateY(-100%);
+                  opacity: 0;
+                " class="tracking-tighter font-geist">
+                A
+              </span>
+              <span style="
+                  display: inline-block;
+                  animation: 0.8s ease-out 0.2s 1 normal forwards running
+                    letterSlideIn;
+                  transform: translateY(-100%);
+                  opacity: 0;
+                " class="tracking-tighter font-geist">
+                U
+              </span>
+              <span style="
+                  display: inline-block;
+                  animation: 0.8s ease-out 0.3s 1 normal forwards running
+                    letterSlideIn;
+                  transform: translateY(-100%);
+                  opacity: 0;
+                " class="tracking-tighter font-geist">
+                L
+              </span>
+              <span style="
+                  display: inline-block;
+                  animation: 0.8s ease-out 0.4s 1 normal forwards running
+                    letterSlideIn;
+                  transform: translateY(-100%);
+                  opacity: 0;
+                " class="tracking-tighter font-geist">
+                T
+              </span>
+
+              <style>
+                @keyframes letterSlideIn {
+                  0% {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                  }
+
+                  50% {
+                    opacity: 0.5;
+                  }
+
+                  100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                  }
+                }
+              </style>
+            </span>
+          </header>
+
+          <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-12 sm:gap-16 mt-auto">
+            <div class="flex flex-col justify-between">
+              <div class="hidden sm:block"></div>
+              <div class="flex gap-4 space-y-6 items-start">
+                <div class="mt-1 w-6 h-12 border-l border-b border-white/20 rounded-sm"></div>
+                <div class="space-y-4">
+                  <p class="text-sm font-geist text-neutral-300 leading-6">
+                    Security-driven blockchain ecosystem
+                  </p>
+                  <div class="inline-block bg-transparent">
+                    <style>
+                      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+
+                      @property --gradient-angle {
+                        syntax: "<angle>";
+                        initial-value: 0deg;
+                        inherits: false;
+                      }
+
+                      @property --gradient-angle-offset {
+                        syntax: "<angle>";
+                        initial-value: 0deg;
+                        inherits: false;
+                      }
+
+                      @property --gradient-percent {
+                        syntax: "<percentage>";
+                        initial-value: 20%;
+                        inherits: false;
+                      }
+
+                      @property --gradient-shine {
+                        syntax: "<color>";
+                        initial-value: #3b82f6;
+                        inherits: false;
+                      }
+
+                      .shiny-cta {
+                        --gradient-angle: 0deg;
+                        --gradient-angle-offset: 0deg;
+                        --gradient-percent: 20%;
+                        --gradient-shine: #3b82f6;
+                        --shadow-size: 2px;
+                        position: relative;
+                        overflow: hidden;
+                        border-radius: 9999px;
+                        padding: 1.25rem 2.5rem;
+                        font-size: 1.125rem;
+                        line-height: 1.2;
+                        font-weight: 500;
+                        color: #ffffff;
+                        background: linear-gradient(#000000, #000000) padding-box,
+                          conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+                            transparent 0%,
+                            #1d4ed8 5%,
+                            var(--gradient-shine) 15%,
+                            #1d4ed8 30%,
+                            transparent 40%,
+                            transparent 100%) border-box;
+                        border: 2px solid transparent;
+                        box-shadow: inset 0 0 0 1px #1a1818;
+                        outline: none;
+                        transition: --gradient-angle-offset 800ms cubic-bezier(0.25, 1, 0.5, 1),
+                          --gradient-percent 800ms cubic-bezier(0.25, 1, 0.5, 1),
+                          --gradient-shine 800ms cubic-bezier(0.25, 1, 0.5, 1),
+                          box-shadow 0.3s;
+                        cursor: pointer;
+                        isolation: isolate;
+                        outline-offset: 4px;
+                        font-family: "Inter", "Helvetica Neue", sans-serif;
+                        z-index: 0;
+                        animation: border-spin 2.5s linear infinite;
+                      }
+
+                      @keyframes border-spin {
+                        to {
+                          --gradient-angle: 360deg;
+                        }
+                      }
+
+                      .shiny-cta:active {
+                        transform: translateY(1px);
+                      }
+
+                      .shiny-cta::before {
+                        content: "";
+                        pointer-events: none;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 0;
+                        --size: calc(100% - 6px);
+                        --position: 2px;
+                        --space: 4px;
+                        width: var(--size);
+                        height: var(--size);
+                        background: radial-gradient(circle at var(--position) var(--position),
+                            white 0.5px,
+                            transparent 0) padding-box;
+                        background-size: var(--space) var(--space);
+                        background-repeat: space;
+                        mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg),
+                            black,
+                            transparent 10% 90%,
+                            black);
+                        border-radius: inherit;
+                        opacity: 0.4;
+                        pointer-events: none;
+                      }
+
+                      .shiny-cta::after {
+                        content: "";
+                        pointer-events: none;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 1;
+                        width: 100%;
+                        aspect-ratio: 1;
+                        background: linear-gradient(-50deg,
+                            transparent,
+                            #1d4ed8,
+                            transparent);
+                        mask-image: radial-gradient(circle at bottom,
+                            transparent 40%,
+                            black);
+                        opacity: 0.6;
+                        animation: shimmer 4s linear infinite;
+                        animation-play-state: running;
+                      }
+
+                      .shiny-cta span {
+                        position: relative;
+                        z-index: 2;
+                        display: inline-block;
+                      }
+
+                      .shiny-cta span::before {
+                        content: "";
+                        pointer-events: none;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: -1;
+                        --size: calc(100% + 1rem);
+                        width: var(--size);
+                        height: var(--size);
+                        box-shadow: inset 0 -1ex 2rem 4px #1d4ed8;
+                        opacity: 0;
+                        border-radius: inherit;
+                        transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+                        animation: breathe 4.5s linear infinite;
+                      }
+
+                      @keyframes shimmer {
+                        to {
+                          transform: translate(-50%, -50%) rotate(360deg);
+                        }
+                      }
+
+                      @keyframes breathe {
+
+                        0%,
+                        100% {
+                          transform: translate(-50%, -50%) scale(1);
+                        }
+
+                        50% {
+                          transform: translate(-50%, -50%) scale(1.2);
+                        }
+                      }
+                    </style>
+                    <button
+                      class="flex gap-2 ring-1 ring-white/20 hover:bg-white/15 transition-colors text-sm text-neutral-950 font-geist bg-white rounded-full pt-3 pr-6 pb-3 pl-6 items-center justify-center"
+                      type="button" id="exploreEcosystemBtn">
+                      Explore Ecosystem
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="arrow-right" class="lucide lucide-arrow-right">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-end">
+              <p class="text-2xl sm:text-3xl font-geist font-light tracking-tight text-neutral-300">
+                We secure the digital economy through
+                <span class="font-semibold text-white">transparent</span>, <span
+                  class="text-neutral-400">intelligent</span>, and
+                <span class="font-semibold text-white">tamper-proof</span>
+                systems. Welcome to the fortress of decentralized data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section id="capabilities" class="sm:py-0 pt-0 pb-10">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-3xl mr-auto ml-auto pt-10 pr-6 sm:pr-20 pb-10 pl-6 sm:pl-20">
+        <div class="animate-[slideUp_0.6s_ease-out] text-center mb-16">
+          <h2 class="sm:text-7xl text-4xl font-light text-white tracking-tighter font-geist mb-6">
+            The engineers of trust.
+          </h2>
+          <p class="text-lg max-w-2xl mx-auto mt-6 font-geist text-neutral-400">
+            Our passionate team of cryptographers, strategists, and engineers who bring your security to life with
+            expertise and dedication.
+          </p>
+        </div>
+
+        <div class="overflow-hidden animate-[slideUp_0.6s_ease-out_0.1s_both] rounded-2xl">
+          <section class="sm:p-8 bg-zinc-900 rounded-3xl mt-8 pt-6 pr-6 pb-6 pl-6"
+            style="position: relative; overflow: hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+              <div
+                class="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-600 to-transparent">
+              </div>
+              <div
+                class="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-600 to-transparent">
+              </div>
+              <div
+                class="absolute top-0 bottom-0 left-1/3 w-px bg-gradient-to-b from-transparent via-zinc-600 to-transparent">
+              </div>
+              <div
+                class="absolute top-0 bottom-0 right-1/3 w-px bg-gradient-to-b from-transparent via-zinc-600 to-transparent">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-10 z-10 relative gap-x-8 gap-y-8 items-start">
+              <div class="flex flex-col min-h-full justify-between">
+                <div>
+                  <span class="text-sm font-normal text-zinc-500 font-geist"> Core Architecture </span>
+                  <h3
+                    class="text-3xl sm:text-4xl lg:text-5xl leading-[0.9] text-zinc-100 mt-2 font-geist font-medium tracking-tighter">
+                    Engineered for absolute data sovereignty.
+                  </h3>
+
+                  <div class="mt-8 relative">
+                    <div class="absolute inset-0 flex items-center">
+                      <div class="w-full h-px bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800"></div>
+                    </div>
+                    <div class="hidden sm:grid grid-cols-3 gap-6 text-zinc-600 bg-zinc-900 px-4 relative">
+                      <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                          data-lucide="shield-check" class="lucide lucide-shield-check h-4 w-4">
+                          <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                          </path>
+                          <path d="m9 12 2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm font-normal font-geist"> Zero Trust </span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                          data-lucide="globe" class="lucide lucide-globe h-4 w-4">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                          <path d="M2 12h20"></path>
+                        </svg>
+                        <span class="text-sm font-normal font-geist"> Global Mesh </span>
+                      </div>
+                      <div class="flex gap-2 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                          data-lucide="zap" class="lucide lucide-zap h-4 w-4">
+                          <path
+                            d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+                          </path>
+                        </svg>
+                        <span class="text-sm font-normal font-geist"> 1ms Latency </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div>
+                    <p class="text-sm text-zinc-100 font-medium tracking-tight font-geist"> Next-gen Protocol </p>
+                    <p class="text-sm text-zinc-400 font-geist mt-1">
+                      Our proprietary consensus mechanism ensures that every transaction is validated by multiple
+                      independent nodes instantly.
+                    </p>
+                    <button
+                      class="mt-4 inline-flex items-center gap-2 h-10 px-4 rounded-full bg-zinc-100 text-zinc-900 text-sm font-normal hover:bg-zinc-200 transition font-geist"
+                      type="button">
+                      View Documentation
+                      <span class="inline-flex h-2 w-2 rounded-full bg-zinc-900"></span>
+                    </button>
+                  </div>
+
+                  <div class="relative">
+                    <div
+                      class="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-700 to-transparent sm:block hidden">
+                    </div>
+                    <p class="text-base text-zinc-300 leading-relaxed sm:text-right sm:pl-8 font-geist">
+                      Processing over
+                      <span class="font-medium text-zinc-100 font-geist"> 1M+ TPS </span>
+                      with
+                      <span class="font-medium text-zinc-100 font-geist"> zero downtime </span>
+                      since the genesis block was minted.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 relative gap-x-4 gap-y-4">
+                <article
+                  class="overflow-hidden group bg-zinc-800 h-[200px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c789ed2b-70b7-48d0-8c47-6912b6ef9e7b_800w.webp)] bg-cover bg-center border-zinc-800 border rounded-2xl relative">
+                  <div class="absolute top-3 left-3">
+                    <span
+                      class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-zinc-100/10 text-zinc-100 border border-zinc-700/50 backdrop-blur-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="lock" class="lucide lucide-lock h-3.5 w-3.5">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="absolute top-3 right-3">
+                    <span
+                      class="px-2 py-1 rounded-md bg-zinc-900/60 backdrop-blur text-[11px] text-zinc-300 font-normal border border-zinc-800 font-geist">
+                      Encryption
+                    </span>
+                  </div>
+                  <div class="absolute bottom-3 left-3 right-3">
+                    <p class="text-white text-lg font-medium tracking-tight leading-tight font-geist">
+                      Quantum Guard
+                    </p>
+                    <p class="text-zinc-400 text-xs font-geist mt-1"> Post-quantum standard </p>
+                  </div>
+                </article>
+
+                <article
+                  class="overflow-hidden group bg-zinc-800 h-[200px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/49aac4dd-9624-4c88-ab00-4c68f0f0bfe8_800w.jpg)] bg-cover bg-center border-zinc-800 border rounded-2xl relative">
+                  <div class="absolute top-3 left-3">
+                    <span
+                      class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-zinc-100/10 text-zinc-100 border border-zinc-700/50 backdrop-blur-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="database" class="lucide lucide-database h-3.5 w-3.5">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                        <path d="M3 12A9 3 0 0 0 21 12"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="absolute top-3 right-3">
+                    <span
+                      class="px-2 py-1 rounded-md bg-zinc-900/60 backdrop-blur text-[11px] text-zinc-300 font-normal border border-zinc-800 font-geist">
+                      Storage
+                    </span>
+                  </div>
+                  <div class="absolute bottom-3 left-3 right-3">
+                    <p class="leading-tight text-lg font-medium text-white tracking-tight font-geist"> Deep Vault </p>
+                    <p class="text-zinc-400 text-xs font-geist mt-1"> Immutable ledger </p>
+                  </div>
+                </article>
+
+                <article
+                  class="overflow-hidden group bg-zinc-800 h-[200px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/569337a5-62c1-4f51-88bb-582a28e7ece2_800w.jpg)] bg-cover bg-center border-zinc-800 border rounded-2xl relative">
+                  <div class="absolute top-3 left-3">
+                    <span
+                      class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-zinc-100/10 text-zinc-100 border border-zinc-700/50 backdrop-blur-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="activity" class="lucide lucide-activity h-3.5 w-3.5">
+                        <path
+                          d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2">
+                        </path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="absolute top-3 right-3">
+                    <span
+                      class="px-2 py-1 rounded-md bg-zinc-900/60 backdrop-blur text-[11px] text-zinc-300 font-normal border border-zinc-800 font-geist">
+                      Speed
+                    </span>
+                  </div>
+                  <div class="absolute bottom-3 left-3 right-3">
+                    <p class="text-white text-lg font-medium tracking-tight leading-tight font-geist">
+                      Flash Consensus
+                    </p>
+                    <p class="text-zinc-400 text-xs font-geist mt-1"> &lt;50ms block time </p>
+                  </div>
+                </article>
+
+                <article
+                  class="overflow-hidden group bg-zinc-800 h-[200px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/22b43084-893d-456c-bb46-04e3c6e78498_800w.jpg)] bg-cover bg-center border-zinc-800 border rounded-2xl relative">
+                  <div class="absolute top-3 left-3">
+                    <span
+                      class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-zinc-100/10 text-zinc-100 border border-zinc-700/50 backdrop-blur-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="fingerprint" class="lucide lucide-fingerprint h-3.5 w-3.5">
+                        <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
+                        <path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path>
+                        <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path>
+                        <path d="M2 12a10 10 0 0 1 18-6"></path>
+                        <path d="M2 16h.01"></path>
+                        <path d="M21.8 16c.2-2 .131-5.354 0-6"></path>
+                        <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path>
+                        <path d="M8.65 22c.21-.66.45-1.32.57-2"></path>
+                        <path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="absolute top-3 right-3">
+                    <span
+                      class="px-2 py-1 rounded-md bg-zinc-900/60 backdrop-blur text-[11px] text-zinc-300 font-normal border border-zinc-800 font-geist">
+                      Identity
+                    </span>
+                  </div>
+                  <div class="absolute bottom-3 left-3 right-3">
+                    <p class="text-white text-lg font-medium tracking-tight leading-tight font-geist">
+                      Self-Sovereign
+                    </p>
+                    <p class="text-zinc-400 text-xs font-geist mt-1"> Biometric keys </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="mt-8 grid grid-cols-3 gap-6 text-center animate-[slideUp_0.6s_ease-out_0.2s_both]">
+          <div class="py-6 px-4 rounded-xl bg-white/5 border border-white/10">
+            <div class="text-2xl font-geist font-medium text-zinc-100"> 15+ </div>
+            <div class="text-sm font-geist text-zinc-400 mt-1"> Team Members </div>
+          </div>
+          <div class="py-6 px-4 rounded-xl bg-white/5 border border-white/10">
+            <div class="text-2xl font-geist font-medium text-zinc-100"> 10M+ </div>
+            <div class="text-sm font-geist text-zinc-400 mt-1"> Blocks Validated </div>
+          </div>
+          <div class="py-6 px-4 rounded-xl bg-white/5 border border-white/10">
+            <div class="text-2xl font-geist font-medium text-zinc-100"> 100% </div>
+            <div class="text-sm font-geist text-zinc-400 mt-1"> System Uptime </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Node Licensing Section -->
+    <section class="sm:py-0 pt-0 pb-10 items-center">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-3xl mr-auto ml-auto pt-10 pr-6 sm:pr-20 pb-10 pl-6 sm:pl-20"
+        id="aura-emf5jfuh5">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between animate-[slideUp_0.6s_ease-out] mb-12">
+          <div class="mb-6 sm:mb-0">
+            <h2 class="sm:text-7xl text-4xl font-light text-white tracking-tighter font-geist mb-6">
+              Node Licensing
+            </h2>
+            <p class="text-lg max-w-2xl font-geist text-neutral-400">
+              Flexible options that match your scale. Built for validators, growing protocols, and teams that value
+              security.
+            </p>
+          </div>
+          <div id="billingToggle"
+            class="inline-flex items-center rounded-full ring-1 ring-white/10 bg-white/5 p-1 gap-1">
+            <button type="button" data-billing="monthly" aria-pressed="true"
+              class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-geist bg-neutral-100 text-black transition-colors">
+              Standard
+            </button>
+            <button type="button" data-billing="project" aria-pressed="false"
+              class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-geist text-neutral-300 hover:text-neutral-100 transition-colors">
+              Enterprise
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="rounded-2xl border overflow-hidden border-white/10 bg-neutral-900/40 animate-[slideUp_0.6s_ease-out_0.1s_both]">
+          <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+            <div class="sm:p-6 lg:p-8 pt-5 pr-5 pb-5 pl-5">
+              <div
+                class="relative rounded-2xl border border-white/10 bg-neutral-100 text-neutral-900 p-5 sm:p-6 lg:p-7">
+                <div class="absolute top-4 right-5 text-xs font-geist text-neutral-500 select-none">
+                  VaultChain®
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div id="planTitle" class="text-sm font-geist font-medium tracking-tight text-neutral-700">
+                      Validator Node
+                    </div>
+                    <div class="mt-3 flex items-baseline gap-2">
+                      <span class="text-3xl sm:text-4xl font-geist font-medium tracking-tight">
+                        <span id="price">500</span>
+                      </span>
+                      <span class="text-neutral-500 font-geist text-base">
+                        <span id="priceUnit">AVAX</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <p id="planDesc" class="mt-4 text-sm leading-6 font-geist text-neutral-600">
+                  Ongoing support and flexible design when you need it. Ideal for startups, growing brands, and
+                  marketing teams needing consistent creative momentum.
+                </p>
+
+                <div class="mt-8 flex items-center justify-between">
+                  <div class="inline-flex items-center gap-2 text-[11px] font-geist text-neutral-500">
+                    <span class="h-2 w-2 rounded-full bg-neutral-400/50"></span>
+                    <span id="addonNote"> Optional Audit add‑on (800 AVAX) </span>
+                  </div>
+                  <div class="h-5 w-9 rounded-full bg-neutral-200 relative">
+                    <div class="absolute top-[2px] left-[2px] h-4 w-4 rounded-full bg-neutral-500"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:p-8 flex flex-col bg-black/20 pt-6 pr-6 pb-6 pl-6 justify-between">
+              <div>
+                <div class="text-sm font-geist text-neutral-400 mb-4"> What's included: </div>
+                <ul class="space-y-3">
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 w-[16px] h-[16px] text-blue-500"
+                      style="width: 16px; height: 16px">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span class="text-neutral-100">Full ledger access</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 text-blue-400">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span id="featureScope" class="text-neutral-100"> One active validator slot </span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 text-blue-600">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    24/7 Monitoring
+                  </li>
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 text-blue-500">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    Fast finality times
+                  </li>
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 text-blue-400">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    Protocol consistency across chains
+                  </li>
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 text-blue-600">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    Priority support
+                  </li>
+                  <li class="flex items-center gap-3 text-sm font-geist text-neutral-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" class="lucide lucide-check-circle-2 text-blue-500">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    Pause or cancel anytime
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-8 flex items-center justify-between gap-6">
+                <div>
+                  <div class="text-sm font-geist text-neutral-400"> Estimated sync </div>
+                  <div id="etaValue" class="text-neutral-100 font-geist"> &lt; 5 mins </div>
+                </div>
+                <button
+                  class="flex gap-2 ring-1 ring-white/20 hover:bg-white/15 transition-colors text-sm text-neutral-100 font-geist bg-white/10 rounded-full pt-3 pr-6 pb-3 pl-6 items-center justify-center"
+                  type="button">
+                  Get Access
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    data-lucide="arrow-right" class="lucide lucide-arrow-right">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 text-[11px] font-geist text-neutral-500 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="info"
+            class="lucide lucide-info text-neutral-400">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4"></path>
+            <path d="M12 8h.01"></path>
+          </svg>
+          No hidden fees. Transparent, collaborative process from day one.
+        </div>
+
+        <script>
+          (function () {
+            const el = document.getElementById("aura-emf5jfuh5");
+            const toggle = el.querySelector("#billingToggle");
+            const price = el.querySelector("#price");
+            const unit = el.querySelector("#priceUnit");
+            const desc = el.querySelector("#planDesc");
+            const title = el.querySelector("#planTitle");
+            const addon = el.querySelector("#addonNote");
+            const scope = el.querySelector("#featureScope");
+            const eta = el.querySelector("#etaValue");
+
+            const states = {
+              monthly: {
+                price: "500",
+                unit: "AVAX",
+                title: "Validator Node",
+                desc: "Ongoing support and flexible security when you need it. Ideal for startups, growing brands, and marketing teams needing consistent uptime.",
+                addon: "Optional Audit add‑on (800 AVAX)",
+                scope: "One active validator slot",
+                eta: "< 5 mins",
+              },
+              project: {
+                price: "2000",
+                unit: "AVAX",
+                title: "Enterprise Node",
+                desc: "Focused, milestone‑driven engagement for a defined scope. Perfect for launches, rebrands, or site upgrades.",
+                addon: "Add‑ons available by scope",
+                scope: "Unlimited slots & milestones",
+                eta: "Instant",
+              },
+            };
+
+            function setBilling(mode) {
+              const s = states[mode];
+              if (!s) return;
+              price.textContent = s.price;
+              unit.textContent = s.unit;
+              title.textContent = s.title;
+              desc.textContent = s.desc;
+              addon.textContent = s.addon;
+              scope.textContent = s.scope;
+              eta.textContent = s.eta;
+
+              toggle.querySelectorAll("[data-billing]").forEach((btn) => {
+                const active = btn.getAttribute("data-billing") === mode;
+                btn.setAttribute("aria-pressed", String(active));
+                btn.classList.toggle("bg-neutral-100", active);
+                btn.classList.toggle("text-black", active);
+                btn.classList.toggle("text-neutral-300", !active);
+              });
+
+              if (window.lucide) lucide.createIcons();
+            }
+
+            toggle.addEventListener("click", (e) => {
+              const btn = e.target.closest("[data-billing]");
+              if (!btn) return;
+              setBilling(btn.getAttribute("data-billing"));
+            });
+
+            if (window.lucide) lucide.createIcons();
+          })();
+        </script>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="sm:py-0 pt-0 pb-10 items-center">
+      <div
+        class="sm:px-6 lg:px-8 sm:pr-20 sm:pl-20 bg-neutral-950 max-w-6xl rounded-3xl mr-auto ml-auto pt-10 pr-6 pb-10 pl-6 relative">
+        <div
+          class="animate-[slideUp_0.6s_ease-out_0.5s_both] bg-neutral-900/40 border-white/10 border rounded-2xl pt-8 pr-8 pb-8 pl-8"
+          style="background: #ffffff; border-color: rgba(0, 0, 0, 0.06)">
+          <div
+            class="overflow-hidden min-h-[420px] sm:min-h-[520px] lg:min-h-[600px] flex rounded-xl relative items-center justify-center">
+            <!-- Full Section Video Background -->
+            <video autoplay muted loop playsinline
+              class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+              poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/73f8b5ed-fd69-48c6-a4a4-e4b2e926e529_1600w.jpg">
+              <source src="asset/kling_20260224_Image_to_Video_Animate_a__5181_0.mp4" type="video/mp4" />
+            </video>
+            <!-- Cinematic Overlay for Text Legibility -->
+            <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+
+            <h2
+              class="relative z-10 px-2 text-white mix-blend-difference text-center font-geist font-semibold tracking-tight leading-[0.82] text-[13vw] sm:text-[11vw] lg:text-[9vw] select-none">
+              <span class="block">From data</span>
+              <span class="block">to fortress</span>
+            </h2>
+
+            <div class="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-6xl opacity-20">
+              <div class="h-px bg-black/30"></div>
+            </div>
+            <div class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-full opacity-20">
+              <div class="w-px h-full bg-black/10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="journey"
+        class="lg:px-12 grid grid-cols-1 lg:grid-cols-2 lg:gap-32 z-10 w-full mt-8 mr-8 mb-8 ml-8 pr-6 pl-6 relative gap-x-20 gap-y-20 items-center">
+        <!-- Left: Isometric Process Visualization -->
+        <div
+          class="relative w-full aspect-square max-w-lg mx-auto lg:max-w-none flex items-center justify-center [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
+          <!-- Isometric Stack Container -->
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+            <!-- Layer 04 (Bottom) -->
+            <div
+              class="absolute inset-0 z-0 translate-y-24 transition-transform duration-700 hover:translate-y-28 group">
+              <div
+                class="w-full h-full border border-white/10 bg-white/[0.02] backdrop-blur-[2px] rotate-45 scale-y-50 shadow-2xl transition-colors group-hover:border-blue-500/30">
+              </div>
+              <!-- Label Right -->
+              <div
+                class="absolute top-1/2 -right-12 sm:-right-24 -translate-y-1/2 translate-x-4 flex items-center gap-3 opacity-0 lg:opacity-100 transition-opacity duration-500 delay-300">
+                <div
+                  class="px-3 py-1.5 rounded-full border border-white/10 bg-neutral-950 flex items-center gap-2 shadow-xl">
+                  <span class="text-xs font-medium text-neutral-400 uppercase tracking-wider"> 04. Deploy </span>
+                  <div class="w-8 h-4 bg-neutral-900 rounded-full relative">
+                    <div class="absolute right-0.5 top-0.5 bottom-0.5 w-3 bg-emerald-400 rounded-full"></div>
+                  </div>
+                </div>
+                <div class="w-12 h-[1px] bg-white/10 origin-left -rotate-[25deg]"></div>
+              </div>
+            </div>
+
+            <!-- Layer 03 -->
+            <div
+              class="absolute inset-0 z-10 translate-y-12 transition-transform duration-700 hover:translate-y-14 group">
+              <div
+                class="w-full h-full border border-white/10 bg-white/[0.04] backdrop-blur-[2px] rotate-45 scale-y-50 shadow-2xl transition-colors group-hover:border-blue-500/30">
+              </div>
+              <!-- Label Left -->
+              <div
+                class="absolute top-1/2 -left-12 sm:-left-24 -translate-y-1/2 -translate-x-4 flex flex-row-reverse items-center gap-3 opacity-0 lg:opacity-100 transition-opacity duration-500 delay-200">
+                <div
+                  class="px-3 py-1.5 rounded-full border border-white/10 bg-neutral-950 flex items-center gap-2 shadow-xl">
+                  <div class="w-8 h-4 bg-neutral-900 rounded-full relative">
+                    <div class="absolute right-0.5 top-0.5 bottom-0.5 w-3 bg-white/20 rounded-full"></div>
+                  </div>
+                  <span class="text-xs font-medium text-neutral-400 uppercase tracking-wider"> 03. Secure </span>
+                </div>
+                <div class="w-12 h-[1px] bg-white/10 origin-right rotate-[25deg]"></div>
+              </div>
+            </div>
+
+            <!-- Layer 02 -->
+            <div
+              class="absolute inset-0 z-20 translate-y-0 transition-transform duration-700 hover:-translate-y-2 group">
+              <div
+                class="w-full h-full border border-white/10 bg-white/[0.06] backdrop-blur-[2px] rotate-45 scale-y-50 shadow-2xl transition-colors group-hover:border-blue-500/30">
+              </div>
+              <!-- Label Right -->
+              <div
+                class="absolute top-1/2 -right-12 sm:-right-24 -translate-y-1/2 translate-x-4 flex items-center gap-3 opacity-0 lg:opacity-100 transition-opacity duration-500 delay-100">
+                <div class="px-3 flex items-center gap-2 shadow-xl">
+                  <span class="text-xs font-medium text-neutral-400 uppercase tracking-wider"> 02. Validate </span>
+                  <div class="w-8 h-4 bg-blue-500 rounded-full relative">
+                    <div class="absolute right-0.5 top-0.5 bottom-0.5 w-3 bg-neutral-950 rounded-full"></div>
+                  </div>
+                </div>
+                <div class="w-12 h-[1px] bg-white/10 origin-left -rotate-[25deg]"></div>
+              </div>
+            </div>
+
+            <!-- Layer 01 (Top) -->
+            <div
+              class="absolute inset-0 z-30 -translate-y-12 transition-transform duration-700 hover:-translate-y-16 group">
+              <div
+                class="w-full h-full border border-white/10 bg-white/[0.08] backdrop-blur-[2px] rotate-45 scale-y-50 shadow-2xl transition-colors group-hover:border-blue-500/50 hover:bg-white/10">
+              </div>
+              <!-- Label Left -->
+              <div
+                class="absolute top-1/2 -left-12 sm:-left-24 -translate-y-1/2 -translate-x-4 flex flex-row-reverse items-center gap-3 opacity-0 lg:opacity-100 transition-opacity duration-500">
+                <div
+                  class="px-3 py-1.5 rounded-full border border-white/10 bg-neutral-950 flex items-center gap-2 shadow-xl">
+                  <div class="w-8 h-4 bg-blue-500 rounded-full relative">
+                    <div class="absolute right-0.5 top-0.5 bottom-0.5 w-3 bg-neutral-950 rounded-full"></div>
+                  </div>
+                  <span class="text-xs font-medium text-neutral-400 uppercase tracking-wider"> 01. Monitor </span>
+                </div>
+                <div class="w-12 h-[1px] bg-white/10 origin-right rotate-[25deg]"></div>
+              </div>
+            </div>
+
+            <!-- Connecting dashed line through center -->
+            <div
+              class="absolute left-1/2 top-[-20%] bottom-[-20%] w-px border-l border-dashed border-white/20 -translate-x-1/2 z-[-1]">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Content Steps -->
+        <div class="flex flex-col justify-center [animation:fadeSlideIn_0.8s_ease-out_0.4s_both] animate-on-scroll">
+          <h2 class="text-4xl lg:text-6xl font-light text-white tracking-tight leading-[1.1] mb-6">
+            From Ledger <span class="text-neutral-500">to Vault</span>
+          </h2>
+
+          <p class="text-lg text-neutral-400 leading-relaxed mb-16 max-w-md font-light">
+            We eliminate complexity, focusing on verifiable security, fast finality, and tamper‑proof guarantees for
+            digital assets.
+          </p>
+
+          <!-- Steps List -->
+          <div class="relative space-y-12 pl-2">
+            <!-- Vertical Connector Line -->
+            <div
+              class="bg-gradient-to-b from-blue-500 via-white/10 to-transparent opacity-30 w-[1px] absolute top-4 bottom-4 left-[27px]">
+            </div>
+
+            <!-- Step 1 -->
+            <div class="relative flex gap-8 group cursor-default">
+              <div class="relative z-10 shrink-0">
+                <div
+                  class="w-10 h-10 rounded-full bg-neutral-950 border border-white/10 flex items-center justify-center group-hover:border-blue-500 group-hover:text-blue-500 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="1em" viewBox="0 0 24 24"
+                    data-icon-set="solar" data-solar="magnifer-bold-duotone">
+                    <path fill="currentColor" d="M20.313 11.157a9.157 9.157 0 1 1-18.313 0a9.157 9.157 0 0 1 18.313 0"
+                      opacity=".5"></path>
+                    <path fill="currentColor"
+                      d="m17.1 18.122l3.666 3.666a.723.723 0 0 0 1.023-1.022L18.122 17.1a9 9 0 0 1-1.022 1.022"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="pt-1">
+                <h3 class="text-xl text-white font-normal mb-2 group-hover:text-blue-500 transition-colors">
+                  Threat &amp; Network Analysis
+                </h3>
+                <p class="text-neutral-500 font-light leading-relaxed">
+                  We map attack surfaces and network behavior to define constraints, risk tolerances, and trust
+                  boundaries.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative flex gap-8 group cursor-default">
+              <div class="relative z-10 shrink-0">
+                <div
+                  class="w-10 h-10 rounded-full bg-neutral-950 border border-white/10 flex items-center justify-center group-hover:border-blue-500 group-hover:text-blue-500 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="1em" viewBox="0 0 24 24"
+                    data-icon-set="solar" data-solar="layers-minimalistic-bold-duotone" stroke-width="2"
+                    style="color: rgb(59, 130, 246); width: 20px; height: 16px">
+                    <path fill="currentColor"
+                      d="M7.624 4.449C9.501 3.698 10.621 3.25 12 3.25s2.499.448 4.376 1.199l2.97 1.188c.954.382 1.727.69 2.258.969c.268.14.528.3.729.493c.206.198.417.498.417.901s-.21.703-.417.901c-.2.193-.46.352-.73.493c-.53.278-1.303.587-2.258.97l-2.97 1.187C14.5 12.302 13.38 12.75 12 12.75s-2.499-.448-4.376-1.199l-2.969-1.188c-.955-.382-1.728-.69-2.259-.969a3.2 3.2 0 0 1-.729-.493C1.461 8.703 1.25 8.403 1.25 8s.21-.703.417-.901c.2-.193.46-.352.73-.493c.53-.278 1.303-.587 2.258-.97z">
+                    </path>
+                    <path fill="currentColor"
+                      d="M2.502 11.443L2.5 11.44a.75.75 0 0 0-1 1.119L2 12l-.5.559l.002.002l.005.004l.014.012l.045.039q.057.047.161.129c.14.108.343.256.61.429c.533.346 1.32.79 2.363 1.207l2.809 1.124l.115.046c1.877.751 2.997 1.199 4.376 1.199s2.499-.448 4.375-1.199l.116-.046L19.3 14.38a13.7 13.7 0 0 0 2.363-1.207a9 9 0 0 0 .771-.558l.045-.039l.014-.012l.005-.004l.001-.002h.002a.75.75 0 0 0-1-1.119l-.002.002l-.002.001l-.024.021l-.118.094a8 8 0 0 1-.508.357c-.46.299-1.161.697-2.105 1.074l-2.808 1.123c-2.025.81-2.874 1.138-3.934 1.138s-1.91-.328-3.934-1.138L5.257 12.99a12 12 0 0 1-2.104-1.074a8 8 0 0 1-.65-.472"
+                      opacity=".7"></path>
+                    <path fill="currentColor"
+                      d="M2.499 15.5a.75.75 0 0 0-1 1.118H1.5l.002.002l.005.004l.014.012l.045.039l.161.13c.14.107.343.255.61.428c.533.346 1.32.79 2.363 1.207l2.809 1.124l.115.046c1.877.751 2.997 1.2 4.376 1.2s2.499-.449 4.375-1.2l.116-.046L19.3 18.44a13.7 13.7 0 0 0 2.363-1.208a9 9 0 0 0 .771-.558l.045-.039l.014-.012l.005-.004l.001-.001l.002-.002a.75.75 0 0 0-1-1.118l-.002.002l-.002.001l-.024.021l-.118.094a8 8 0 0 1-.508.357c-.46.299-1.161.697-2.105 1.074l-2.808 1.123c-2.025.81-2.874 1.138-3.934 1.138s-1.91-.328-3.934-1.138l-2.809-1.123a12 12 0 0 1-2.104-1.073a8 8 0 0 1-.626-.452l-.025-.02z"
+                      opacity=".4"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="pt-1">
+                <h3 class="text-xl text-white font-normal mb-2 group-hover:text-blue-500 transition-colors">
+                  Consensus &amp; Policy Design
+                </h3>
+                <p class="text-neutral-500 font-light leading-relaxed">
+                  Rules are defined for validation, access control, and governance—balancing resilience with
+                  performance.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative flex gap-8 group cursor-default">
+              <div class="relative z-10 shrink-0">
+                <div
+                  class="w-10 h-10 rounded-full bg-neutral-950 border border-white/10 flex items-center justify-center group-hover:border-blue-500 group-hover:text-blue-500 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="1em" viewBox="0 0 24 24"
+                    data-icon-set="solar" data-solar="ruler-pen-bold-duotone">
+                    <path fill="currentColor"
+                      d="M16 22c-1.886 0-2.828 0-3.414-.586c-.503-.502-.574-1.267-.584-2.664L12 17.25V6.75l.002-1.5c.01-1.397.081-2.162.584-2.664C13.172 2 14.114 2 16 2h2c1.886 0 2.828 0 3.414.586S22 4.114 22 6v12c0 1.886 0 2.828-.586 3.414S19.886 22 18 22z"
+                      opacity=".5"></path>
+                    <path fill="currentColor"
+                      d="M15 8.25h-3v1.5h3a.75.75 0 0 0 0-1.5m-1-3h-1.998L12 6.75h2a.75.75 0 0 0 0-1.5m0 6h-2v1.5h2a.75.75 0 0 0 0-1.5m1 3h-3v1.5h3a.75.75 0 0 0 0-1.5m-1 3h-2l.002 1.5H14a.75.75 0 0 0 0-1.5m-6-2.27V7a7.9 7.9 0 0 1-3 .59A7.9 7.9 0 0 1 2 7v7.98c0 .622 0 .934.038 1.24a5 5 0 0 0 .25 1.056c.102.29.241.569.52 1.126l1.468 2.937a.809.809 0 0 0 1.448 0l1.468-2.937c.279-.557.418-.835.52-1.126a5 5 0 0 0 .25-1.057C8 15.914 8 15.602 8 14.98">
+                    </path>
+                    <path fill="currentColor"
+                      d="M5 2a3 3 0 0 1 3 3v2a7.9 7.9 0 0 1-3 .589A7.9 7.9 0 0 1 2 7V5a3 3 0 0 1 3-3" opacity=".5">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+              <div class="pt-1">
+                <h3 class="text-xl text-white font-normal mb-2 group-hover:text-blue-500 transition-colors">
+                  Validator Integration
+                </h3>
+                <p class="text-neutral-500 font-light leading-relaxed">
+                  Every node, key, and permission is modeled precisely—so governance and execution match the design.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative flex gap-8 group cursor-default">
+              <div class="relative z-10 shrink-0">
+                <div
+                  class="w-10 h-10 rounded-full bg-neutral-950 border border-white/10 flex items-center justify-center group-hover:border-blue-500 group-hover:text-blue-500 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="1em" viewBox="0 0 24 24"
+                    data-icon-set="solar" data-solar="buildings-bold-duotone">
+                    <path fill="currentColor" fill-rule="evenodd"
+                      d="M7 5h4c1.886 0 2.828 0 3.414.586S15 7.114 15 9v12.25h7a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1 0-1.5h1V9c0-1.886 0-2.828.586-3.414S5.114 5 7 5M5.25 8A.75.75 0 0 1 6 7.25h6a.75.75 0 0 1 0 1.5H6A.75.75 0 0 1 5.25 8m0 3a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5H6a.75.75 0 0 1-.75-.75m0 3a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5H6a.75.75 0 0 1-.75-.75M9 18.25a.75.75 0 0 1 .75.75v2.25h-1.5V19a.75.75 0 0 1 .75-.75"
+                      clip-rule="evenodd"></path>
+                    <path fill="currentColor"
+                      d="M15 2h2c1.886 0 2.828 0 3.414.586S21 4.114 21 6v15.25h-6V9c0-1.886 0-2.828-.586-3.414C13.842 5.013 12.928 5 11.126 5V3.5c.084-.387.225-.68.46-.914C12.17 2 13.114 2 15 2"
+                      opacity=".5"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="pt-1">
+                <h3 class="text-xl text-white font-normal mb-2 group-hover:text-blue-500 transition-colors">
+                  Vault Deployment
+                </h3>
+                <p class="text-neutral-500 font-light leading-relaxed">
+                  Automated operations harden and deploy the stack, turning policy into production-grade security.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technology Stack Logos (Monotone) -->
+          <div class="mt-16 pt-10 border-t border-white/5">
+            <p class="text-xs uppercase tracking-widest text-neutral-600 mb-6"> Powered by </p>
+            <div
+              class="flex flex-wrap gap-8 items-center opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+              <iconify-icon icon="simple-icons:avalanche" width="24"
+                class="hover:text-white transition-colors"></iconify-icon>
+              <iconify-icon icon="simple-icons:ethereum" width="24"
+                class="hover:text-white transition-colors"></iconify-icon>
+              <iconify-icon icon="simple-icons:ipfs" width="26"
+                class="hover:text-white transition-colors"></iconify-icon>
+              <iconify-icon icon="simple-icons:chainlink" width="26"
+                class="hover:text-white transition-colors"></iconify-icon>
+              <iconify-icon icon="simple-icons:cloudflare" width="26"
+                class="hover:text-white transition-colors"></iconify-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Architecture Section -->
+    <section class="sm:py-0 pt-0 pb-10 items-center">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-3xl mr-auto ml-auto pt-10 pr-6 sm:pr-20 pb-10 pl-6 sm:pl-20 border border-white/5">
+        <div class="animate-[slideUp_0.6s_ease-out] mb-12">
+          <h2 class="sm:text-5xl text-4xl font-light text-white tracking-tighter font-geist mb-4">
+            Built for resilience.
+          </h2>
+          <p class="text-lg max-w-2xl font-geist text-neutral-400">
+            A deep-dive into the architectural primitives that make VaultChain the optimal standard for digital asset
+            custody.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-[slideUp_0.6s_ease-out_0.1s_both]">
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <img src="componet/ChatGPT%20Image%20Feb%2024,%202026,%2003_25_43%20PM.png" alt="Hardware Enclaves Icon"
+              class="h-10 w-auto mb-6 object-contain rounded-full" />
+            <h3 class="text-lg text-white font-medium font-geist mb-2">Hardware Enclaves</h3>
+            <p class="text-sm text-neutral-400 font-geist leading-relaxed">Cryptographic keys are generated and secured
+              in dedicated HSMs, ensuring private keys never touch internet-connected memory.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <img src="componet/ChatGPT%20Image%20Feb%2024,%202026,%2003_25_53%20PM.png"
+              alt="Multi-Party Computation Icon" class="h-10 w-auto mb-6 object-contain rounded-full" />
+            <h3 class="text-lg text-white font-medium font-geist mb-2">Multi-Party Computation</h3>
+            <p class="text-sm text-neutral-400 font-geist leading-relaxed">Transactions are signed collaboratively
+              across distributed nodes, eliminating any single point of failure in the authorization flow.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <img src="componet/ChatGPT%20Image%20Feb%2024,%202026,%2003_25_58%20PM.png"
+              alt="Immutable Audit Trails Icon" class="h-10 w-auto mb-6 object-contain rounded-full" />
+            <h3 class="text-lg text-white font-medium font-geist mb-2">Immutable Audit Trails</h3>
+            <p class="text-sm text-neutral-400 font-geist leading-relaxed">Every policy change and access request is
+              cryptographically hashed and recorded on our internal ledger for provable compliance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Global Compliance Section -->
+    <section class="sm:py-0 pt-0 pb-10 items-center">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-3xl mr-auto ml-auto pt-10 pr-6 sm:pr-20 pb-10 pl-6 sm:pl-20 overflow-hidden border border-white/5">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row">
+          <div
+            class="relative h-64 sm:h-80 bg-zinc-900/60 rounded-2xl border border-white/5 overflow-hidden flex justify-center items-center">
+            <!-- Global Compliance Video Background -->
+            <video autoplay muted loop playsinline
+              class="absolute inset-0 h-full w-full object-cover opacity-80 pointer-events-none"
+              poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/49aac4dd-9624-4c88-ab00-4c68f0f0bfe8_800w.jpg">
+              <source src="asset/kling_20260224_Image_to_Video_Animate_a__5819_0.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="animate-[slideUp_0.6s_ease-out]">
+            <h2 class="sm:text-5xl text-4xl font-light text-white tracking-tighter font-geist mb-6">
+              Compliant across borders.
+            </h2>
+            <p class="text-lg font-geist text-neutral-400 mb-8 leading-relaxed">
+              Operating within the world's most stringent financial jurisdictions demands robust controls. VaultChain
+              brings institutional-grade compliance natively to your decentralized applications.
+            </p>
+            <ul class="space-y-4">
+              <li
+                class="flex items-center gap-3 text-sm font-geist text-neutral-300 bg-white/5 p-3 rounded-xl border border-white/5">
+                <span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
+                <span>Certified SOC2 Type II compliant infrastructure</span>
+              </li>
+              <li
+                class="flex items-center gap-3 text-sm font-geist text-neutral-300 bg-white/5 p-3 rounded-xl border border-white/5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
+                <span>GDPR & CCPA ready data localization tools</span>
+              </li>
+              <li
+                class="flex items-center gap-3 text-sm font-geist text-neutral-300 bg-white/5 p-3 rounded-xl border border-white/5">
+                <span class="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
+                <span>ISO 27001 standardized operating procedures</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Metrics Section -->
+    <section class="sm:py-0 pt-0 pb-10 items-center">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-3xl mr-auto ml-auto pt-10 pr-6 sm:pr-20 pb-10 pl-6 sm:pl-20 border border-white/5">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 animate-[slideUp_0.6s_ease-out]">
+          <div>
+            <h2 class="sm:text-5xl text-4xl font-light text-white tracking-tighter font-geist mb-3">
+              Network at scale.
+            </h2>
+            <p class="text-lg font-geist text-neutral-400">
+              Live performance metrics proving our absolute efficiency.
+            </p>
+          </div>
+          <div
+            class="mt-4 md:mt-0 px-4 py-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-medium font-geist tracking-wide uppercase flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-[pulse_2s_ease-in-out_infinite]"></span> Systems
+            Operational
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="text-neutral-500 text-xs uppercase tracking-widest font-geist mb-3">Value Secured</div>
+            <div class="text-3xl font-medium text-white tracking-tight font-geist">$4.2B+</div>
+          </div>
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="text-neutral-500 text-xs uppercase tracking-widest font-geist mb-3">Avg Latency</div>
+            <div class="text-3xl font-medium text-white tracking-tight font-geist">14ms</div>
+          </div>
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="text-neutral-500 text-xs uppercase tracking-widest font-geist mb-3">Active Vaults</div>
+            <div class="text-3xl font-medium text-white tracking-tight font-geist">18,502</div>
+          </div>
+          <div class="p-6 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="text-neutral-500 text-xs uppercase tracking-widest font-geist mb-3">Uptime Since genesis</div>
+            <div class="text-3xl font-medium text-white tracking-tight font-geist">99.99%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Final CTA Section -->
+    <section class="sm:py-0 pt-0 pb-10 items-center">
+      <div
+        class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-3xl mr-auto ml-auto pt-16 pr-6 sm:pr-20 pb-16 pl-6 sm:pl-20 overflow-hidden text-center group border border-white/5">
+        <!-- Abstract glowing background -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
+          <div
+            class="w-[600px] h-[300px] bg-blue-500/10 blur-[100px] rounded-full group-hover:bg-blue-500/20 transition-colors duration-1000">
+          </div>
+          <div
+            class="absolute w-[400px] h-[200px] bg-emerald-500/5 blur-[80px] rounded-full group-hover:bg-emerald-500/10 transition-colors duration-1000 delay-100">
+          </div>
+        </div>
+
+        <div class="relative z-10 max-w-2xl mx-auto animate-[slideUp_0.6s_ease-out]">
+          <h2 class="sm:text-6xl text-5xl font-light text-white tracking-tighter font-geist mb-6">
+            Enter the Vault.
+          </h2>
+          <p class="text-lg font-geist text-neutral-400 mb-10 leading-relaxed">
+            Stop compromising between institutional security and decentralization. Access the dashboard to deploy your
+            first protected asset container today.
+          </p>
+          <button type="button" onclick="document.getElementById('accessVaultBtn').click()"
+            class="group inline-flex text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-medium text-black bg-white tracking-tight font-geist h-12 rounded-full px-8 relative items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+            Launch Terminal
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="relative max-w-6xl sm:px-6 lg:px-8 bg-neutral-950 rounded-2xl mr-auto ml-auto pt-4 pr-6 sm:pr-20 pb-4 pl-6 sm:pl-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="flex items-center gap-3 mb-4 md:mb-0">
+            <span class="text-lg font-medium tracking-tight font-geist"> VaultChain </span>
+          </div>
+          <div class="flex items-center gap-6 text-sm text-neutral-400">
+            <a href="#" class="transition-colors font-geist hover:text-neutral-100"> Privacy </a>
+            <a href="#" class="transition-colors font-geist hover:text-neutral-100"> Terms </a>
+            <a href="#" class="transition-colors font-geist hover:text-neutral-100"> Contact </a>
+            <span class="font-geist">© 2026</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- DASHBOARD PAGE (placeholder for new app integration) -->
+  <main id="dashboardPage"
+    class="hidden min-h-screen antialiased text-white font-geist selection:bg-orange-500/30 overflow-x-hidden">
+  </main>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Dashboard helpers */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
+    }
+
+    .bg-pattern-diagonal {
+      background-image: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 4px,
+          rgba(255, 255, 255, 0.05) 4px,
+          rgba(255, 255, 255, 0.05) 8px);
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) lucide.createIcons();
+
+      const homeAuraBg = document.getElementById("homeAuraBg");
+      const topNav = document.getElementById("topNav");
+      const homePage = document.getElementById("homePage");
+      const dashboardPage = document.getElementById("dashboardPage");
+
+      const accessVaultBtn = document.getElementById("accessVaultBtn");
+      const exploreEcosystemBtn = document.getElementById("exploreEcosystemBtn");
+      const homeBrand = document.getElementById("homeBrand");
+      const dashboardBrand = document.getElementById("dashboardBrand");
+      const connectWalletBtn = document.getElementById("connectWalletBtn");
+
+      // nav anchors (disable while dashboard is visible)
+      const navMission = document.getElementById("navMission");
+      const navEcosystem = document.getElementById("navEcosystem");
+      const navProtocol = document.getElementById("navProtocol");
+
+      function setNavLinksEnabled(enabled) {
+        [navMission, navEcosystem, navProtocol].forEach((a) => {
+          if (!a) return;
+          if (enabled) {
+            a.classList.remove("pointer-events-none", "opacity-50");
+            a.setAttribute("tabindex", "0");
+            a.setAttribute("aria-disabled", "false");
+          } else {
+            a.classList.add("pointer-events-none", "opacity-50");
+            a.setAttribute("tabindex", "-1");
+            a.setAttribute("aria-disabled", "true");
+          }
+        });
+      }
+
+      function showHome() {
+        if (dashboardPage) dashboardPage.classList.add("hidden");
+        if (homePage) homePage.classList.remove("hidden");
+        if (topNav) topNav.classList.remove("hidden");
+        if (homeAuraBg) homeAuraBg.classList.remove("hidden");
+        const dashboardAuraBg = document.getElementById("dashboardAuraBg");
+        if (dashboardAuraBg) dashboardAuraBg.classList.add("hidden");
+        setNavLinksEnabled(true);
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+
+      function showDashboard() {
+        if (homePage) homePage.classList.add("hidden");
+        if (dashboardPage) dashboardPage.classList.remove("hidden");
+        if (topNav) topNav.classList.add("hidden");
+        if (homeAuraBg) homeAuraBg.classList.add("hidden");
+        const dashboardAuraBg = document.getElementById("dashboardAuraBg");
+        if (dashboardAuraBg) dashboardAuraBg.classList.remove("hidden");
+        setNavLinksEnabled(false);
+        window.scrollTo({ top: 0, behavior: "auto" });
+        if (window.lucide) {
+          lucide.createIcons({
+            attrs: { "stroke-width": 1.5 },
+          });
+        }
+        // Initialize UnicornStudio for dashboard background after DOM update
+        setTimeout(() => {
+          if (window.UnicornStudio && typeof window.UnicornStudio.init === "function") {
+            // Re-initialize to detect the dashboard project that was hidden initially
+            window.UnicornStudio.init();
+          }
+        }, 100);
+      }
+
+      // Modal + wallet functions are used by inline onclick attributes in the dashboard markup
+      window.toggleModal = function toggleModal(show) {
+        const modal = document.getElementById("walletModal");
+        const panel = document.getElementById("modalPanel");
+        if (!modal || !panel) return;
+
+        if (show) {
+          modal.classList.remove("hidden");
+          setTimeout(() => {
+            panel.classList.remove("scale-95", "opacity-0");
+            panel.classList.add("scale-100", "opacity-100");
+          }, 10);
+        } else {
+          panel.classList.remove("scale-100", "opacity-100");
+          panel.classList.add("scale-95", "opacity-0");
+          setTimeout(() => {
+            modal.classList.add("hidden");
+          }, 200);
+        }
+      };
+
+      window.connectWallet = async function connectWallet(providerName) {
+        try {
+          let provider = null;
+
+          if (providerName === "phantom") {
+            provider = window.solana && window.solana.isPhantom ? window.solana : null;
+            if (!provider) {
+              window.open("https://phantom.app/", "_blank");
+              return;
+            }
+          } else if (providerName === "solflare") {
+            provider = window.solflare;
+            if (!provider) {
+              window.open("https://solflare.com/", "_blank");
+              return;
+            }
+          }
+
+          const response = await provider.connect();
+          const walletAddress = response.publicKey.toString();
+          console.log(`✅ Connected to ${providerName}:`, walletAddress);
+
+          window.toggleModal(false);
+
+          const btnText = document.getElementById("walletBtnText");
+          if (btnText) btnText.textContent = walletAddress.slice(0, 4) + "..." + walletAddress.slice(-4);
+
+          const btn = document.getElementById("connectWalletBtn");
+          if (btn) {
+            btn.classList.add("ring-2", "ring-green-500/50", "bg-gradient-to-r", "from-emerald-600", "to-teal-600");
+            btn.classList.remove("from-orange-600", "to-amber-500");
+          }
+        } catch (err) {
+          console.error("❌ Wallet connection failed:", err?.message || err);
+        }
+      };
+
+      if (accessVaultBtn) accessVaultBtn.addEventListener("click", showDashboard);
+      if (exploreEcosystemBtn) exploreEcosystemBtn.addEventListener("click", showDashboard);
+
+      if (dashboardBrand) {
+        dashboardBrand.addEventListener("click", (e) => {
+          e.preventDefault();
+          showHome();
+        });
+      }
+      if (homeBrand) homeBrand.addEventListener("click", showHome);
+
+      if (connectWalletBtn) connectWalletBtn.addEventListener("click", () => window.toggleModal(true));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") window.toggleModal(false);
+      });
+
+      // Start on home
+      showHome();
+    });
+  </script>
+</body>
+
+</html>

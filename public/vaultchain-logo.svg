@@ -1,0 +1,62 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="64" y1="44" x2="192" y2="212" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E1FF"/>
+      <stop offset="0.52" stop-color="#0A74FF"/>
+      <stop offset="1" stop-color="#0B3A7A"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="88" y1="96" x2="168" y2="176" gradientUnits="userSpaceOnUse">
+      <stop stop-color="rgba(255,255,255,0.75)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.05)"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0.35 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- shield -->
+  <path
+    d="M128 22c33 22 66 23 88 28v78c0 62-43 97-88 112C83 225 40 190 40 128V50c22-5 55-6 88-28Z"
+    fill="url(#g1)"
+    filter="url(#glow)"
+  />
+  <path
+    d="M128 38c27 17 54 18 72 22v67c0 52-37 82-72 95-35-13-72-43-72-95V60c18-4 45-5 72-22Z"
+    fill="rgba(0,0,0,0.18)"
+  />
+
+  <!-- lock body -->
+  <rect x="86" y="122" width="84" height="74" rx="14" fill="rgba(11,12,16,0.55)" stroke="rgba(255,255,255,0.14)" />
+  <rect x="92" y="128" width="72" height="62" rx="12" fill="url(#g2)" opacity="0.35"/>
+
+  <!-- shackle -->
+  <path
+    d="M100 122v-16c0-22 13-38 28-38s28 16 28 38v16"
+    stroke="rgba(234,243,255,0.85)"
+    stroke-width="12"
+    stroke-linecap="round"
+    opacity="0.85"
+  />
+  <path
+    d="M108 122v-16c0-17 9-30 20-30s20 13 20 30v16"
+    stroke="rgba(0,225,255,0.55)"
+    stroke-width="6"
+    stroke-linecap="round"
+    opacity="0.9"
+  />
+
+  <!-- keyhole -->
+  <path d="M128 146c-9 0-16 7-16 16 0 7 4 13 11 15l-2 18h14l-2-18c7-2 11-8 11-15 0-9-7-16-16-16Z" fill="rgba(11,12,16,0.7)" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="104" cy="74" r="2" fill="rgba(255,255,255,0.25)"/>
+  <circle cx="156" cy="56" r="1.8" fill="rgba(255,255,255,0.18)"/>
+</svg>
+
