@@ -4,16 +4,7 @@ import * as React from 'react';
 const { useEffect } = React;
 import Link from 'next/link';
 
-declare global {
-  interface Window {
-    UnicornStudio: any;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'iconify-icon': any;
-    }
-  }
-}
+
 
 export default function LandingPage() {
   React.useEffect(() => {
@@ -529,10 +520,10 @@ export default function LandingPage() {
           {/* Top Section: Logo & Newsletter */}
           <div className="flex flex-col lg:flex-row justify-between items-start gap-16 pb-16 border-b border-white/5">
             <div className="space-y-6 max-w-sm">
-              <div className="flex gap-3 items-center">
-                <span className="w-12 h-10 bg-[url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/531cf86b-c775-422c-bec2-7f64f47b9def_320w.png')] bg-cover bg-center"></span>
+              <Link href="/" className="flex gap-3 items-center group">
+                <span className="w-12 h-10 bg-[url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/531cf86b-c775-422c-bec2-7f64f47b9def_320w.png')] bg-cover bg-center transition-transform group-hover:scale-105"></span>
                 <span className="text-2xl font-black font-geist text-white tracking-tighter">VaultChain</span>
-              </div>
+              </Link>
               <p className="text-neutral-400 font-geist text-sm leading-relaxed">
                 Institutional-grade decentralized infrastructure. Fortifying the digital economy with zero-trust architecture and global sovereignty.
               </p>

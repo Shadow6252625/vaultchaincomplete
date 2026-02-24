@@ -91,12 +91,12 @@ export function DashboardClient({
       {/* Premium Sidebar */}
       <aside className="w-full lg:w-64 flex-shrink-0">
         <div className="sticky top-24 space-y-8">
-          <div className="px-2">
-            <h2 className="text-2xl font-bold tracking-tight text-white">
-              Vault <span className="text-accent">X</span>
+          <Link href="/" className="px-2 group block">
+            <h2 className="text-2xl font-bold tracking-tight text-white group-hover:text-accent transition-colors">
+              Vault <span className="text-accent group-hover:text-white transition-colors">X</span>
             </h2>
             <p className="mt-1 text-xs text-white/30 uppercase tracking-[0.2em]">Management Interface</p>
-          </div>
+          </Link>
 
           <nav className="space-y-1">
             {[

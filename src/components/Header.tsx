@@ -21,7 +21,7 @@ export function Header() {
 
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3.5">
         <Link
-          href="/launch"
+          href="/"
           className="pointer-events-auto group flex items-center gap-3"
         >
           <div
