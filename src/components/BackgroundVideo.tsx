@@ -9,8 +9,6 @@ export function BackgroundVideo({ src = "/vault-bg.mp4", brightness = 0.35 }: { 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  if (pathname === "/") return null;
-
   React.useEffect(() => {
     if (videoRef.current) {
       if (videoRef.current.readyState >= 3) {
@@ -28,6 +26,8 @@ export function BackgroundVideo({ src = "/vault-bg.mp4", brightness = 0.35 }: { 
       ? "/vault-poster.png"
       : "/vault-poster.png"; // Fallback poster
 
+
+  if (pathname === "/") return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#0b0c10]">
