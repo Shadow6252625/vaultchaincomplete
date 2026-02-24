@@ -8,12 +8,11 @@ import { Icon } from '@iconify/react';
 
 
 
-const ForcedVideo = ({ src, className, preload = "auto" }: { src: string, className?: string, preload?: "auto" | "metadata" | "none" }) => {
+const ForcedVideo = ({ src, className, preload = "auto", style = {} }: { src: string, className?: string, preload?: "auto" | "metadata" | "none", style?: React.CSSProperties }) => {
   const ref = React.useRef<HTMLVideoElement>(null);
   React.useEffect(() => {
     if (ref.current) {
       ref.current.play().catch(() => {
-        // Fallback for strict browsers: try again on interaction
         const play = () => ref.current?.play();
         window.addEventListener('click', play, { once: true });
         window.addEventListener('scroll', play, { once: true });
@@ -29,6 +28,7 @@ const ForcedVideo = ({ src, className, preload = "auto" }: { src: string, classN
       playsInline
       preload={preload}
       className={className}
+      style={style}
     >
       <source src={src} type="video/mp4" />
     </video>
@@ -140,7 +140,7 @@ export default function LandingPage() {
         }
         main > section {
           content-visibility: auto;
-          contain-intrinsic-size: 1px 1000px;
+          contain-intrinsic-size: 1px 800px;
         }
         .vc-hardware-accel {
           transform: translateZ(0);
@@ -185,6 +185,8 @@ export default function LandingPage() {
             <ForcedVideo
               src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4"
               className="absolute inset-0 w-full h-full object-cover bg-black"
+              style={{ objectPosition: 'center 65%' }}
+              preload="auto"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-neutral-950/80"></div>
             <div className="absolute inset-0 bg-black/30"></div>
@@ -378,6 +380,7 @@ export default function LandingPage() {
               <ForcedVideo
                 src="/asset/kling_20260224_Image_to_Video_Animate_a__5181_0.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
+                preload="metadata"
               />
               <div className="absolute inset-0 bg-black/40"></div>
               <h2 className="relative z-10 text-[12vw] sm:text-[10vw] font-black text-white tracking-tighter leading-none select-none mix-blend-difference font-geist text-center">FROM DATA<br />TO FORTRESS</h2>
@@ -516,6 +519,7 @@ export default function LandingPage() {
               <ForcedVideo
                 src="/asset/kling_20260224_Image_to_Video_Animate_a__5819_0.mp4"
                 className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                preload="metadata"
               />
             </div>
             <div className="space-y-10">
