@@ -3,6 +3,7 @@
 import * as React from 'react';
 const { useEffect } = React;
 import Link from 'next/link';
+import { Icon } from '@iconify/react';
 
 
 
@@ -250,7 +251,7 @@ export default function LandingPage() {
 
                       {/* Top Left Icon */}
                       <div className="absolute top-3 left-3 w-7 h-7 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center">
-                        <iconify-icon icon={`solar:${item.icon}-bold`} width="14" class="text-white/80"></iconify-icon>
+                        <Icon icon={`solar:${item.icon}-bold`} width="14" className="text-white/80" />
                       </div>
 
                       {/* Top Right Label */}
@@ -419,7 +420,7 @@ export default function LandingPage() {
                 ].map((step, i) => (
                   <div key={i} className="flex gap-10 group relative z-10">
                     <div className="w-14 h-14 rounded-full bg-neutral-950 border border-white/10 flex items-center justify-center group-hover:border-blue-500 transition-all shadow-xl">
-                      <iconify-icon icon={step.icon} width="24" class="text-blue-500"></iconify-icon>
+                      <Icon icon={step.icon} width="24" className="text-blue-500" />
                     </div>
                     <div className="pt-2">
                       <h4 className="text-2xl text-white font-geist font-medium group-hover:text-blue-400 transition-colors mb-2">{step.t}</h4>
@@ -430,10 +431,10 @@ export default function LandingPage() {
               </div>
 
               <div className="pt-16 border-t border-white/5 flex gap-10 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700 items-center">
-                <iconify-icon icon="simple-icons:avalanche" width="28"></iconify-icon>
-                <iconify-icon icon="simple-icons:ethereum" width="24"></iconify-icon>
-                <iconify-icon icon="simple-icons:chainlink" width="26"></iconify-icon>
-                <iconify-icon icon="simple-icons:cloudflare" width="28"></iconify-icon>
+                <Icon icon="simple-icons:avalanche" width="28" />
+                <Icon icon="simple-icons:ethereum" width="24" />
+                <Icon icon="simple-icons:chainlink" width="26" />
+                <Icon icon="simple-icons:cloudflare" width="28" />
               </div>
             </div>
           </div>
@@ -577,13 +578,13 @@ export default function LandingPage() {
               <h4 className="text-white font-geist font-bold text-sm tracking-wide">Connect</h4>
               <div className="flex gap-4">
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 hover:text-white text-neutral-400 transition-all">
-                  <iconify-icon icon="logos:twitter" width="16" class="grayscale group-hover:grayscale-0"></iconify-icon>
+                  <Icon icon="logos:twitter" width="16" className="grayscale group-hover:grayscale-0" />
                 </a>
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-neutral-800 hover:text-white text-neutral-400 transition-all">
-                  <iconify-icon icon="mdi:github" width="20"></iconify-icon>
+                  <Icon icon="mdi:github" width="20" />
                 </a>
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#5865F2] hover:border-[#5865F2] hover:text-white text-neutral-400 transition-all">
-                  <iconify-icon icon="ic:baseline-discord" width="20"></iconify-icon>
+                  <Icon icon="ic:baseline-discord" width="20" />
                 </a>
               </div>
             </div>
