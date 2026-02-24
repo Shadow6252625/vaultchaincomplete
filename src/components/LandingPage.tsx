@@ -184,7 +184,7 @@ export default function LandingPage() {
           <div className="relative max-w-6xl mx-auto min-h-[600px] sm:min-h-[700px] flex flex-col bg-neutral-950 rounded-[40px] p-10 sm:p-20 overflow-hidden shadow-2xl border border-white/5">
             <ForcedVideo
               src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4"
-              className="absolute inset-0 w-full h-full object-contain bg-black"
+              className="absolute inset-0 w-full h-full object-cover bg-black"
               style={{ objectPosition: 'center top' }}
               preload="auto"
             />
