@@ -42,11 +42,6 @@ export default function RootLayout({
           </div>
         </SolanaProvider>
 
-        {/* Optimized Script Loading */}
-        <Script
-          src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js"
-          strategy="afterInteractive"
-        />
         <Script
           src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"
           strategy="afterInteractive"

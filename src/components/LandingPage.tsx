@@ -36,89 +36,71 @@ const ForcedVideo = ({ src, className, preload = "auto", style = {} }: { src: st
 };
 
 export default function LandingPage() {
+
+  // Billing Toggle logic
+  const setupBillingToggle = () => {
+    const el = document.getElementById("aura-emf5jfuh5");
+    if (!el) return;
+    const toggle = el.querySelector("#billingToggle");
+    const price = el.querySelector("#price");
+    const unit = el.querySelector("#priceUnit");
+    const desc = el.querySelector("#planDesc");
+    const title = el.querySelector("#planTitle");
+    const addon = el.querySelector("#addonNote");
+    const scope = el.querySelector("#featureScope");
+    const eta = el.querySelector("#etaValue");
+
+    const states = {
+      monthly: {
+        price: "500",
+        unit: "AVAX",
+        title: "Validator Node",
+        desc: "Ongoing support and flexible security when you need it. Ideal for startups, growing brands, and marketing teams needing consistent uptime.",
+        addon: "Optional Audit add‑on (800 AVAX)",
+        scope: "One active validator slot",
+        eta: "< 5 mins",
+      },
+      project: {
+        price: "2000",
+        unit: "AVAX",
+        title: "Enterprise Node",
+        desc: "Focused, milestone‑driven engagement for a defined scope. Perfect for launches, rebrands, or site upgrades.",
+        addon: "Add‑ons available by scope",
+        scope: "Unlimited slots & milestones",
+        eta: "Instant",
+      },
+    };
+
+    function setBilling(mode: "monthly" | "project") {
+      const s = states[mode];
+      if (!s || !price || !unit || !title || !desc || !addon || !scope || !eta || !toggle) return;
+      price.textContent = s.price;
+      unit.textContent = s.unit;
+      title.textContent = s.title;
+      desc.textContent = s.desc;
+      addon.textContent = s.addon;
+      scope.textContent = s.scope;
+      eta.textContent = s.eta;
+
+      toggle.querySelectorAll("[data-billing]").forEach((btn) => {
+        const active = btn.getAttribute("data-billing") === mode;
+        btn.setAttribute("aria-pressed", String(active));
+        btn.classList.toggle("bg-neutral-100", active);
+        btn.classList.toggle("text-black", active);
+        btn.classList.toggle("text-neutral-300", !active);
+      });
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest("[data-billing]");
+        if (!btn) return;
+        setBilling(btn.getAttribute("data-billing") as "monthly" | "project");
+      });
+    }
+  };
+
   React.useEffect(() => {
-    // Force transparency for fixed background to show through
-    document.body.style.background = 'transparent';
-    document.documentElement.style.background = 'transparent';
-
-    // Initialize Unicorn Studio if script is already present (from layout.tsx)
-    const initUnicorn = () => {
-      if (window.UnicornStudio && typeof window.UnicornStudio.init === "function") {
-        if (!window.UnicornStudio.isInitialized) {
-          window.UnicornStudio.init();
-          window.UnicornStudio.isInitialized = true;
-        }
-      } else {
-        // Retry if script hasn't loaded yet
-        setTimeout(initUnicorn, 500);
-      }
-    };
-
-    initUnicorn();
-
-    // Billing Toggle logic
-    const setupBillingToggle = () => {
-      const el = document.getElementById("aura-emf5jfuh5");
-      if (!el) return;
-      const toggle = el.querySelector("#billingToggle");
-      const price = el.querySelector("#price");
-      const unit = el.querySelector("#priceUnit");
-      const desc = el.querySelector("#planDesc");
-      const title = el.querySelector("#planTitle");
-      const addon = el.querySelector("#addonNote");
-      const scope = el.querySelector("#featureScope");
-      const eta = el.querySelector("#etaValue");
-
-      const states = {
-        monthly: {
-          price: "500",
-          unit: "AVAX",
-          title: "Validator Node",
-          desc: "Ongoing support and flexible security when you need it. Ideal for startups, growing brands, and marketing teams needing consistent uptime.",
-          addon: "Optional Audit add‑on (800 AVAX)",
-          scope: "One active validator slot",
-          eta: "< 5 mins",
-        },
-        project: {
-          price: "2000",
-          unit: "AVAX",
-          title: "Enterprise Node",
-          desc: "Focused, milestone‑driven engagement for a defined scope. Perfect for launches, rebrands, or site upgrades.",
-          addon: "Add‑ons available by scope",
-          scope: "Unlimited slots & milestones",
-          eta: "Instant",
-        },
-      };
-
-      function setBilling(mode: "monthly" | "project") {
-        const s = states[mode];
-        if (!s || !price || !unit || !title || !desc || !addon || !scope || !eta || !toggle) return;
-        price.textContent = s.price;
-        unit.textContent = s.unit;
-        title.textContent = s.title;
-        desc.textContent = s.desc;
-        addon.textContent = s.addon;
-        scope.textContent = s.scope;
-        eta.textContent = s.eta;
-
-        toggle.querySelectorAll("[data-billing]").forEach((btn) => {
-          const active = btn.getAttribute("data-billing") === mode;
-          btn.setAttribute("aria-pressed", String(active));
-          btn.classList.toggle("bg-neutral-100", active);
-          btn.classList.toggle("text-black", active);
-          btn.classList.toggle("text-neutral-300", !active);
-        });
-      }
-
-      if (toggle) {
-        toggle.addEventListener("click", (e) => {
-          const btn = (e.target as HTMLElement).closest("[data-billing]");
-          if (!btn) return;
-          setBilling(btn.getAttribute("data-billing") as "monthly" | "project");
-        });
-      }
-    };
-
     setupBillingToggle();
   }, []);
 
@@ -148,10 +130,6 @@ export default function LandingPage() {
         }
       `}</style>
 
-      {/* FIXED BLUE BACKGROUND AURA */}
-      <div id="homeAuraBg" className="fixed inset-0 w-full h-full -z-10">
-        <div data-us-project="x6cbPWi9roeeiZ8cuBu3" className="absolute inset-0 w-full h-full"></div>
-      </div>
 
       {/* Nav */}
       <nav id="topNav" className="sticky top-4 z-50 max-w-6xl mx-auto px-6 py-2 bg-neutral-950/80 rounded-3xl mt-4 border border-white/10 backdrop-blur-xl">
