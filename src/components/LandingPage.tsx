@@ -101,6 +101,17 @@ export default function LandingPage() {
 
   React.useEffect(() => {
     setupBillingToggle();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -126,6 +137,16 @@ export default function LandingPage() {
         .vc-hardware-accel {
           transform: translateZ(0);
           backface-visibility: hidden;
+        }
+        .reveal-on-scroll {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: opacity, transform;
+        }
+        .reveal-on-scroll.revealed {
+          opacity: 1;
+          transform: translateY(0);
         }
       `}</style>
 
@@ -157,7 +178,7 @@ export default function LandingPage() {
       <main className="space-y-4 py-4">
 
         {/* 1. Hero Section */}
-        <section className="px-6 overflow-hidden pt-4 pb-4 relative vc-hardware-accel">
+        <section className="reveal-on-scroll px-6 overflow-hidden pt-4 pb-4 relative vc-hardware-accel">
           <div className="relative max-w-6xl mx-auto min-h-[600px] sm:min-h-[700px] flex flex-col bg-neutral-950 rounded-[40px] p-10 sm:p-20 overflow-hidden shadow-2xl border border-white/5">
             <ForcedVideo
               src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4"
@@ -198,7 +219,7 @@ export default function LandingPage() {
         {/* 2. Capabilities Section (Engineered for absolute data sovereignty) - RESTORED TO MATCH SCREENSHOT */}
         <section
           id="capabilities"
-          className="px-6 py-1 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950 rounded-[40px] p-4 sm:p-6 border border-white/5 space-y-8">
             <div className="text-center mb-6">
@@ -350,7 +371,7 @@ export default function LandingPage() {
         {/* 4. Results Section (Big Video) */}
         <section
           id="results"
-          className="px-6 py-2 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-2 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-white rounded-[40px] p-2 relative overflow-hidden group shadow-3xl">
             <div className="h-[500px] sm:h-[600px] w-full relative rounded-[38px] overflow-hidden flex items-center justify-center bg-black">
@@ -367,7 +388,7 @@ export default function LandingPage() {
 
         {/* 5. Journey Section (Isometric Stack) */}
         <section
-          className="px-6 py-4 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-4 vc-hardware-accel"
         >
           <div id="journey" className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
 
@@ -467,7 +488,7 @@ export default function LandingPage() {
 
         {/* 6. Architecture Section */}
         <section
-          className="px-6 py-1 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[40px] p-4 sm:p-10 border border-white/10 backdrop-blur-md">
             <h2 className="text-5xl md:text-7xl font-light text-white font-geist tracking-tighter mb-8">Built for resilience.</h2>
@@ -489,7 +510,7 @@ export default function LandingPage() {
 
         {/* 7. Global Compliance Section */}
         <section
-          className="px-6 py-1 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[40px] p-4 sm:p-10 border border-white/10 backdrop-blur-md grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 bg-black group shadow-2xl">
@@ -515,7 +536,7 @@ export default function LandingPage() {
 
         {/* 8. Metrics Section */}
         <section
-          className="px-6 py-1 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-1 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/60 rounded-[50px] p-6 sm:p-10 border border-white/10 backdrop-blur-xl flex flex-col md:flex-row justify-between items-center gap-16">
             <div className="space-y-6 text-center md:text-left">
@@ -532,7 +553,7 @@ export default function LandingPage() {
 
         {/* 9. Final CTA Section */}
         <section
-          className="px-6 py-2 pb-8 vc-hardware-accel"
+          className="reveal-on-scroll px-6 py-2 pb-8 vc-hardware-accel"
         >
           <div className="max-w-6xl mx-auto bg-neutral-950/80 rounded-[60px] p-8 sm:p-16 text-center relative overflow-hidden group border border-white/10 shadow-3xl">
             <div className="absolute inset-0 bg-blue-600/10 blur-[160px] rounded-full group-hover:bg-blue-600/20 transition-all duration-1000"></div>
