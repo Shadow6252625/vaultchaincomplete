@@ -183,11 +183,11 @@ export default function LandingPage() {
         {/* 1. Hero Section */}
         <section className="reveal-on-scroll px-6 overflow-hidden pt-4 pb-4 relative vc-hardware-accel">
           <div className="relative max-w-6xl mx-auto min-h-[600px] sm:min-h-[700px] flex flex-col bg-neutral-950 rounded-[40px] p-10 sm:p-20 overflow-hidden shadow-2xl border border-white/5">
-            <ForcedVideo
-              src="/asset/kling_20260223_Image_to_Video_Animate_a__6032_0.mp4"
+            <img
+              src="/asset/cbd1822b-0388-4b3e-bf48-cd90702d87c8.png"
               className="absolute inset-0 w-full h-full object-cover bg-black"
               style={{ objectPosition: 'center top' }}
-              preload="auto"
+              alt="Vault Hero"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-neutral-950/80"></div>
             <div className="absolute inset-0 bg-black/30"></div>
