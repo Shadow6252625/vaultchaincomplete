@@ -1,4 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
+
+.font-geist {
+  font-family: "Geist", sans-serif !important;
+}
 
 :root {
   --background: #0b0c10;
@@ -49,13 +54,16 @@ body::before {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.14);
 }
@@ -70,12 +78,10 @@ body::before {
 }
 
 .vc-glass {
-  background: linear-gradient(
-    168deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(255, 255, 255, 0.025) 50%,
-    rgba(10, 116, 255, 0.04) 100%
-  );
+  background: linear-gradient(168deg,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.025) 50%,
+      rgba(10, 116, 255, 0.04) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     0 0 0 0.5px rgba(255, 255, 255, 0.06) inset,
@@ -87,12 +93,10 @@ body::before {
 }
 
 .vc-card {
-  background: linear-gradient(
-    168deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.02) 60%,
-    rgba(10, 116, 255, 0.03) 100%
-  );
+  background: linear-gradient(168deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 60%,
+      rgba(10, 116, 255, 0.03) 100%);
   border: 1px solid var(--card-border);
   box-shadow:
     0 0 0 0.5px rgba(255, 255, 255, 0.05) inset,
@@ -106,6 +110,7 @@ body::before {
     box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .vc-card-hover:hover {
   transform: translateY(-2px);
   border-color: rgba(0, 225, 255, 0.15);
@@ -123,14 +128,12 @@ body::before {
 
 .vc-glow-line {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 225, 255, 0.30) 30%,
-    rgba(10, 116, 255, 0.50) 50%,
-    rgba(0, 225, 255, 0.30) 70%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 225, 255, 0.30) 30%,
+      rgba(10, 116, 255, 0.50) 50%,
+      rgba(0, 225, 255, 0.30) 70%,
+      transparent 100%);
 }
 
 .vc-section-icon {
@@ -146,22 +149,47 @@ body::before {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
 .animate-shimmer {
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;

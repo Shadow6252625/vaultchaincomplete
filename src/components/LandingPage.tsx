@@ -117,8 +117,6 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen antialiased text-zinc-100 font-sans selection:bg-blue-500/30 overflow-x-hidden relative">
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
-        @import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
         html { scroll-behavior: smooth; }
         .font-geist { font-family: "Geist", sans-serif !important; }
         @keyframes letterSlideIn {
@@ -169,10 +167,19 @@ export default function LandingPage() {
             </div>
             <Link
               href="/launch"
-              className="relative group overflow-hidden px-8 py-2.5 rounded-full font-geist text-xs font-bold text-white shadow-2xl transition-all hover:scale-105 active:scale-95 block"
+              className="inline-flex text-[12px] transition-all hover:brightness-110 font-light text-white tracking-tight font-geist h-9 rounded-full px-6 relative items-center justify-center group"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-orange-400 via-orange-600 to-amber-300"></span>
-              <span className="relative z-10">Access Vault</span>
+              {/* Outer glow ring */}
+              <span className="absolute inset-0 rounded-full pointer-events-none bg-gradient-to-r from-orange-400/20 via-amber-300/30 to-orange-400/20 shadow-[0_0_22px_rgba(248,181,129,0.55)] ring-1 ring-amber-300/60"></span>
+
+              {/* Inner orange pill */}
+              <span className="absolute inset-[3px] rounded-full pointer-events-none bg-gradient-to-b from-orange-400 via-orange-500 to-amber-300 shadow-[0_4px_12px_rgba(0,0,0,0.45)]"></span>
+
+              {/* Soft bottom glow */}
+              <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[70%] h-4 rounded-full blur-xl pointer-events-none bg-amber-300/35"></span>
+
+              {/* Label */}
+              <span className="font-medium z-10 relative">Get Started Free</span>
             </Link>
           </div>
         </div>
