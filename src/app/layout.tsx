@@ -19,6 +19,9 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "VaultChain",
   description: "VaultChain — The Encrypted Core of Trust.",
+  icons: {
+    icon: "/hero-logo.png",
+  },
 };
 
 import Script from "next/script";
