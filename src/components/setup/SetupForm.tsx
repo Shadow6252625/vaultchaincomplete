@@ -150,7 +150,7 @@ export function SetupForm() {
           <SectionHeader icon="🔗" title="API Integration" step={2} />
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
             <Input label="RPC Endpoint" icon="🌐" value={rpcEndpoint} onChange={(e) => setRpcEndpoint(e.target.value)} placeholder="https://..." disabled={disabled} />
-            <Input label="API Key" icon="🔑" value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="••••••••••••" disabled={disabled} />
+            <Input type="password" label="API Key" icon="🔑" value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="••••••••••••" disabled={disabled} />
             <label className="group block">
               <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/50">
                 <span className="text-sm">⛓️</span> Network
@@ -177,8 +177,8 @@ export function SetupForm() {
           <SectionHeader icon="🛡️" title="Security Parameters" step={3} />
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
             <Input label="Encryption Key" icon="🔒" value={encryptionKey} onChange={(e) => setEncryptionKey(e.target.value)} placeholder="kdf://..." disabled={disabled} />
-            <Input label="Recovery Phrase" icon="📜" value={recoveryPhrase} onChange={(e) => setRecoveryPhrase(e.target.value)} placeholder="twelve words..." disabled={disabled} />
-            <Input label="Backup Email" icon="📧" value={backupEmail} onChange={(e) => setBackupEmail(e.target.value)} placeholder="security@domain.com" disabled={disabled} />
+            <Input type="password" label="Recovery Phrase" icon="📜" value={recoveryPhrase} onChange={(e) => setRecoveryPhrase(e.target.value)} placeholder="twelve words..." disabled={disabled} />
+            <Input type="password" label="Backup Email" icon="📧" value={backupEmail} onChange={(e) => setBackupEmail(e.target.value)} placeholder="security@domain.com" disabled={disabled} />
           </div>
           <div
             className="mt-4 rounded-xl p-4 text-[11px] leading-relaxed text-white/40"
